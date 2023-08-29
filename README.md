@@ -10,8 +10,6 @@
 * Tecnologia: React Native.
 * Sistema: Android.
 * Finalidade: a criação de um app que tem por objetivo recrutar voluntários e instituições públicas ou privadas destinatárias da prestação de serviços voluntários, no âmbito do Distrito Federal, combinado boas pessoas, boas instituições e bons propósitos que se relacionam. Desse modo, os voluntários e as entidades se conectam para atingir resultados nobres.
-* Funcionalidades:
-
 * Funcionalidades / Itens do BACKLOG:
 
 (Tela 1)
