@@ -5,30 +5,40 @@
 * Docente: José Reginaldo de Sousa Mendes Júnior.
 * Turma: ADSNM2CB.
 
-# APP "VOLUNTARIADO"
-* Grupo: Bruno Vaz, Larrysa Moraes e Saind Medeiros.
+# APP "Pet Sitter"
+* Grupo: Bruno Vaz, Laryssa Moraes e Saind Medeiros.
 * Tecnologia: React Native.
 * Sistema: Android.
-* Finalidade: a criação de um app que tem por objetivo recrutar voluntários e instituições públicas ou privadas destinatárias da prestação de serviços voluntários, no âmbito do Distrito Federal, combinado boas pessoas, boas instituições e bons propósitos que se relacionam. Desse modo, os voluntários e as entidades se conectam para atingir resultados nobres.
+* Finalidade:
+* Criação de app para buscar serviço de Pet Sitter na localidade do usuário. O Pet sitter cadastra a oferta de serviço e o usuário recruta em acordo com os filtros definidos.
 * Funcionalidades / Itens do BACKLOG:
 
-(Tela 1)
+(Tela 1) - Autenticação de usuário;
   - Login e senha;          
   - Recuperar senha;
-  - Autenticação de usuário;
   - Novo cadastro.
+    
+(tela inicial) -  A partir desta tela haverá menu fixo no rodapé e botão fixo de saída no canto superior direito
+  - Perfil usuário
+  - Agendamentos
+(Menu rodapé)
+- Inicio / Agenda / Novo / Ajuda 
 
-(Tela 2) 
-  Exibe Cadastro e serviço agendado.
-    - Perfil instituições.
-    - Perfil voluntários.
-    - Botão de nova busca.
+(Tela 2) - Exibe Cadastro e serviço agendado.
+  - Perfil pet Sitter.
+  - Perfil usuário.
 
+(Tela 3) - Após clicar em "Nova" no Menu
+  - Lista ofertas em acordo com o filtro definido pelo usuario.
+  - Clica para selecionar.
+  - Calendário para agendar.
+  - Botão de confirmação.
+    
+(Tela 4) - Agenda
+  - serviços agendados com data e dados do serviço.
 
-(Tela 3)
-  - Busca por Instituição ou Voluntario, clicando, seleciona.
+(Tela 5) - Ajuda
+  - Perguntas e respostas sobre dúvidas recorrentes.
 
-(Tela 4)
-  - Confirmação
 
 ****OBS.: sujeito a alterações.
