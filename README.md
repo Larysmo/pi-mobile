@@ -13,6 +13,6 @@
 
 # Sobre este app
 * PET SITTER é um aplicativo móvel projetado para conectar pessoas que possuem animais de estimação com cuidadores de animais correspondentes que podem cuidar dos animais quando os proprietários estão ausentes.
-*Na PET SITTER tem excelentes cuidadores, habilitados para cuidar do bem-estar do seu animal de estimação. Zelamos do seu pet com amor e proteção.
+* Na PET SITTER tem excelentes cuidadores, habilitados para cuidar do bem-estar do seu animal de estimação. Zelamos do seu pet com amor e proteção.
 
 ****OBS.: sujeito a alterações.
