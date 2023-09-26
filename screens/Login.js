@@ -12,8 +12,10 @@ const Login = (props) => {
 
 
   const handleEntrar = () => {
-    console.log('Botao entrar pressionado')
-    props.onLogin();
+    navigation.navigate('Home')
+  }
+  const handleLogin = () => {
+    navigation.navigate('Login')
   }
   const handleCadastrarUsuario = () => {
     navigation.navigate('CadastrarUsuario')
