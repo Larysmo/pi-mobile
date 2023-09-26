@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-reanimated'
+
 
 import Login from './screens/Login';
 import Home from './screens/Home';
