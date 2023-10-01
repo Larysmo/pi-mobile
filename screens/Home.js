@@ -2,10 +2,12 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { Appbar, TextInput } from 'react-native-paper';
 import {Ionicons} from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import NavegacaoAbaHome from '../Routes/NavegacaoAbaHome';
 
+import Pet1 from '../assets/caramelo.jpg';
+import Pet2 from '../assets/gatopreto.png';
 
-import Pet1 from '../assets/golden1.jpg';
-import Pet2 from '../assets/pitbull1.jpg';
 
 const Home = (props) => {
 const navigation = useNavigation();
@@ -27,7 +29,7 @@ const navigation = useNavigation();
         </Appbar.Header>
         <View style={estilos.container}>
           <View style={estilos.quadrado}>
-          <View style={estilos.busca}>
+           <View style={estilos.busca}>
             <Text style={estilos.titulo}> Buscar Cuidador</Text>
             <TextInput
               style={estilos.input}
@@ -35,7 +37,7 @@ const navigation = useNavigation();
           />
           </View>
           <View style={estilos.lista}>
-          <Text style={estilos.titulo}> Meus Pets</Text>
+          <Text style={estilos.titulo}> Seus Pets:</Text>
             <View style={estilos.pet}>
               <Image source={Pet1}/>
             </View>
@@ -45,9 +47,11 @@ const navigation = useNavigation();
           </View>
           </View>
         </View>
+   <NavegacaoAbaHome />
     </View>
   );
 };
+
 
 const estilos = StyleSheet.create({
   container: {
@@ -73,14 +77,17 @@ const estilos = StyleSheet.create({
     flex:2
   },
   titulo: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    alignSelf: 'center',
+    fontSize: 16,
+    textAlign: "left",
     marginBottom: 20,
   },
   input:{
     width:150,
     height:50,
+  },
+  pet:{
+    border:1,
+    padding:5
   }
 })
 

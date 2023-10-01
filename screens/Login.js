@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, Image, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
-import Logomarca from '../assets/logo.png';
+import Logomarca from '../assets/Logo.png';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -18,7 +18,7 @@ const Login = (props) => {
     navigation.navigate('Login')
   }
   const handleCadastrarUsuario = () => {
-    navigation.navigate('CadastrarUsuario')
+    navigation.navigate('CadastroUsuario')
   }
   const handleRecuperarSenha = () => {
     navigation.navigate('RecuperarSenha')

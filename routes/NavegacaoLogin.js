@@ -1,6 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import RecuperarSenha from '../screens/RecuperarSenha';
-import CadastroUsuario from '../screens/CadastroUsuario';
+import CadastroUsuario from '../screens/CadrastroUsuario';
 
 const Stack = createNativeStackNavigator();
 

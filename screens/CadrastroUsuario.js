@@ -60,10 +60,6 @@ const estilos = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 20,
   },
-  texto: {
-    fontSize: 14,
-    marginBottom:10,
-  },
   input: {
     width: 300,
     marginBottom: 10,

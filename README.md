@@ -1,18 +1,11 @@
-# pi-mobile
+# Sample Snack app
 
-* Trabalho apresentado como requisito para obtenção de nota na disciplina "Projeto Integrado - Mobile ".
-* Síntese: Desenvolvimento de aplicação mobile com autenticação e acesso a backend consumindo serviços REST.
-* Docente: José Reginaldo de Sousa Mendes Júnior.
-* Turma: ADSNM2CB.
+Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
 
-# APP "MeuPet Feliz"
-* Grupo: Bruno Vaz, Iago Alves, Laryssa Moraes e Saind Medeiros.
-* Tecnologia: React Native.
-* Sistema: Android.
-* Finalidade: criação de app para buscar serviço de Pet Sitter na localidade do usuário. O Pet sitter cadastra a oferta de serviço e o usuário recruta em acordo com os filtros definidos.
+When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
 
-# Sobre este app
-* MeuPet Feliz é um aplicativo móvel projetado para conectar pessoas que possuem animais de estimação com cuidadores de animais correspondentes que podem cuidar dos animais quando os proprietários estão ausentes.
-* MeuPet Feliz tem excelentes cuidadores, habilitados para cuidar do bem-estar do seu animal de estimação. Zelamos do seu pet com amor e proteção.
+All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
 
-****OBS.: sujeito a alterações.
+If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
+
+Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
