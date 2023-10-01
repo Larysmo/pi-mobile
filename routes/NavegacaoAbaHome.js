@@ -1,18 +1,16 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-
 const Tab = createBottomTabNavigator ();
 
-const NavegacaoHomeAba = () => {
+function NavegacaoHomeAba () {
   return(
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={Login} />
-      <Tab.Screen name="Buscar" component={Login}/>
-      <Tab.Screen name="Agenda" component={Login}/>
-      <Tab.Screen name="Perfil" component={Login} />
-      <Tab.Screen name="Sobre" component={Login}/>
+      <Tab.Screen name="Home" />
+      <Tab.Screen name="Buscar" />
+      <Tab.Screen name="Agenda" />
+      <Tab.Screen name="Perfil" />
+      <Tab.Screen name="Sobre" />
     </Tab.Navigator>
-  )
+  );
 }
-
 export default NavegacaoHomeAba
