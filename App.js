@@ -10,6 +10,7 @@ import Login from './screens/Login';
 import Home from './screens/Home';
 import CadastroUsuario from './screens/CadrastroUsuario';
 import RecuperarSenha from './screens/RecuperarSenha';
+import FlatList from './screens/FlatList';
 
 
 const Stack = createStackNavigator();
@@ -25,6 +26,7 @@ function App() {
               <Stack.Screen name="App" component={NavegacaoAbaHome} />
               <Stack.Screen name="CadastroUsuario" component={CadastroUsuario} />
               <Stack.Screen name="RecuperarSenha" component={RecuperarSenha} />       
+              <Stack.Screen name="FlatList" component={FlatList} />       
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
