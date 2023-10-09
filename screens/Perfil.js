@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { Appbar, TextInput } from 'react-native-paper';
+import { Appbar, Button } from 'react-native-paper';
 import {Ionicons} from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,7 +7,7 @@ import Pet1 from '../assets/caramelo.jpg';
 import Pet2 from '../assets/gatopreto.png';
 import estilos from '../components/estilos';
 
-const Home = (props) => {
+const Perfil = (props) => {
 const navigation = useNavigation();
 
 
@@ -28,14 +28,13 @@ const navigation = useNavigation();
         <View style={estilos.container}>
           <View style={estilos.quadrado}>
            <View style={estilos.busca}>
-            <Text style={estilos.titulo}> Buscar Cuidador</Text>
-            <TextInput
-              style={estilos.input}
-              label="Cidade Satélite"
+            <Text style={estilos.titulo}> Seus Dados</Text>
+          <Button
+          Title={"Editar"}
           />
           </View>
           <View style={estilos.lista}>
-          <Text style={estilos.titulo}> Seus Pets:</Text>
+          <Text style={estilos.titulo}> Seus Pets</Text>
             <View style={estilos.pet}>
               <Image source={Pet1}/>
             </View>
@@ -51,4 +50,4 @@ const navigation = useNavigation();
 
 
 
-export default Home
+export default Perfil

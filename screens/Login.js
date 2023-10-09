@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
 import { Text, View, Image, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
-import Logomarca from '../assets/Logo.png';
+import { TextInput, Button, } from 'react-native-paper';
+import Logomarca from '../assets/logo.png';
 import { useNavigation } from '@react-navigation/native';
+import { useState} from 'react';
+import estilos from '../components/estilos'
 
 
 const Login = (props) => {
@@ -12,7 +13,7 @@ const Login = (props) => {
 
 
   const handleEntrar = () => {
-    navigation.navigate('Home')
+    navigation.navigate("Inicio")
   }
   const handleLogin = () => {
     navigation.navigate('Login')
@@ -60,40 +61,6 @@ const Login = (props) => {
   );
 };
 
-const estilos = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'orange',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  quadrado: {
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 10,
-    padding: 20,
-    height: '70%',
-  },
-  input: {
-    width: 300,
-    marginBottom: 10,
-    borderRadius:10
-  },
-  titulo: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginBottom: 20,
-  },
-  botao: {
-    backgroundColor: 'blue',
-    width: 150,
-  },
-  botaofim: {
-    flexDirection: 'row',
-    marginTop: 40,
-  },
-});
+
 
 export default Login;
