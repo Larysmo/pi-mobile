@@ -1,4 +1,4 @@
-import { createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 import Home from '../screens/Home';
@@ -8,9 +8,6 @@ import Perfil from '../screens/Perfil';
 import PerfilEditar from '../screens/PerfilEditar';
 import PerfilEditarPet from '../screens/PerfilEditarPet';
 import PerfilExcluir from '../screens/PerfilExcluir';
-
-
-
 
 
 const Stack = createNativeStackNavigator();

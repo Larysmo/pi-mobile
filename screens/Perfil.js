@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native'
 import { Appbar, Button } from 'react-native-paper';
 import {Ionicons} from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import Pet1 from '../assets/caramelo.jpg';
-import Pet2 from '../assets/gatopreto.png';
+import Pet2 from '../assets/gatopreto.png'
 import estilos from '../components/estilos';
 
 const Perfil = (props) => {

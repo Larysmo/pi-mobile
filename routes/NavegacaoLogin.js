@@ -4,17 +4,18 @@ import CadastroUsuario from '../screens/CadrastroUsuario';
 import Login from '../screens/Login'
 import MenuNavigator from './MenuNavigator'
 
+
 const Stack = createNativeStackNavigator();
 
 const NavegacaoLogin = () => {
-  return(
-    <Stack.Navigator initialRouteName="Login">
+  return (
+    <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="CadastroUsuario" component={CadastroUsuario} />
       <Stack.Screen name="RecuperarSenha" component={RecuperarSenha} />
-      <Stack.Screen name="Inicio" component={MenuNavigator} />
+      <Stack.Screen name="Inicio" component= {MenuNavigator} options={{ headerShown: false }} />
     </Stack.Navigator>
-  )
+  );
 }
 
 export default NavegacaoLogin

@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useState } from 'react';
-import Home from './Home'
+import estilos from '../components/estilos'
 
 const CadastroUsuario = () => {
 
@@ -15,12 +15,9 @@ const [telefone, setTelefone] = useState("");
 const [email, setEmail] = useState("");
 const [senha, setSenha] = useState("");
 
-
-
-
   const handlecadastrar = () => {
     if (nome && telefone && email && senha) {
-        navigation.navigate('Home');
+        navigation.navigate('Inicio');
     }else{
       alert("Por favor, preencha todos os campos!")
     }
@@ -61,42 +58,14 @@ const [senha, setSenha] = useState("");
               secureTextEntry={true}
 
             />
-          <Button style={estilos.botao} onPress={handlecadastrar} >Entrar</Button> 
+          <TouchableOpacity style={estilos.botao} onPress={handlecadastrar}>
+          <Text style={estilos.botaoTexto}>Enviar</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
 }
 
-const estilos = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'orange',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  quadrado: {
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 10,
-    padding: 20,
-    height: '70%',
-  },
-  botao: {
-    backgroundColor: 'blue',
-    width: 100,
-  },
-  titulo: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginBottom: 20,
-  },
-  input: {
-    width: 300,
-    marginBottom: 10,
-    borderRadius:10
-  },
-})
+
 
 export default CadastroUsuario
