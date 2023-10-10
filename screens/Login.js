@@ -1,41 +1,37 @@
-import React, { useState } from 'react';
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
-import Logomarca from '../assets/Logo.png';
+import { Text, View, Image, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { TextInput, Button, } from 'react-native-paper';
+import Logomarca from '../assets/logo.png';
 import { useNavigation } from '@react-navigation/native';
-import estilos from '../components/estilos';
+import { useState} from 'react';
+import estilos from '../components/estilos'
+
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const navigation = useNavigation();
 
-  const handleEntrar = () => {
-    if (email && senha) {;
-      navigation.navigate('Home', {email});
-    } else {
-      alert('Por favor, preencha todos os campos!');
-    }
-  };
 
+  const handleEntrar = () => {
+    navigation.navigate("Inicio")
+  }
+  const handleLogin = () => {
+    navigation.navigate('Login')
+  }
   const handleCadastrarUsuario = () => {
-    navigation.navigate('CadastroUsuario');
-  };
+    navigation.navigate('CadastroUsuario')
+  }
   const handleRecuperarSenha = () => {
-    navigation.navigate('RecuperarSenha');
-  };
+    navigation.navigate('RecuperarSenha')
+  }
+
+
 
   return (
     <KeyboardAvoidingView
       style={estilos.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <View style={estilos.quadrado}>
         <Image source={Logomarca} />
         <Text style={estilos.titulo}>Tutor Pet</Text>
@@ -54,18 +50,17 @@ const Login = (props) => {
           value={senha}
           onChangeText={(text) => setSenha(text)}
         />
-        <TouchableOpacity
-          style={estilos.botao}
-          onPress={handleEntrar}>
-          <Text style={estilos.botaoTexto}>Entrar</Text>
-        </TouchableOpacity>
+        <Button style={estilos.botao} onPress={handleEntrar}>Entrar</Button>
         <View style={estilos.botaofim}>
           <Button onPress={handleCadastrarUsuario}>Cadastrar Novo</Button>
           <Button onPress={handleRecuperarSenha}>Recuperar Senha</Button>
         </View>
       </View>
+      
     </KeyboardAvoidingView>
   );
 };
+
+
 
 export default Login;
