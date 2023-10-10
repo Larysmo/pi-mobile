@@ -11,18 +11,6 @@
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-native": "0.71.13",
-<<<<<<< HEAD
-    "react-native-paper": "4.9.2",
-    "@expo/vector-icons": "^13.0.0",
-    "react-native-gesture-handler": "~2.9.0",
-    "react-native-safe-area-context": "4.5.0",
-    "@react-navigation/native": "6.0.10",
-    "@react-navigation/bottom-tabs": "*",
-    "@react-navigation/native-stack": "*",
-    "@react-navigation/stack": "*",
-    "react-native-reanimated": "~2.14.4",
-    "react-native-screens": "~3.20.0"
-=======
     "@expo/vector-icons": "^13.0.0",
     "react-native-paper": "4.9.2",
     "react-native-screens": "~3.20.0",
@@ -34,7 +22,6 @@
     "@react-navigation/bottom-tabs": "*",
     "@react-navigation/native-stack": "6.6.1",
     "react-native-safe-area-context": "4.5.0"
->>>>>>> ff94ad68f5ffe558da1554915f6c50e994a88349
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
