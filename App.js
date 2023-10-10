@@ -2,11 +2,10 @@ import 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import NavegacaoLogin from './routes/NavegacaoLogin'
+import 'react-native-reanimated'
+import NavegacaoAbaHome from './Routes/NavegacaoAbaHome.js'
 
 
-<<<<<<< HEAD
-=======
 import Login from './screens/Login';
 import Home from './screens/Home';
 import CadastroUsuario from './screens/CadrastroUsuario';
@@ -16,15 +15,9 @@ import FlatList from './screens/FlatList';
 
 const Stack = createStackNavigator();
 
->>>>>>> ff94ad68f5ffe558da1554915f6c50e994a88349
 function App() {
+  
   return (
-<<<<<<< HEAD
-    <NavigationContainer>
-        <NavegacaoLogin/>
-    </NavigationContainer>
-
-=======
     <SafeAreaProvider>
       <NavigationContainer>
               <Stack.Navigator initialRouteName='Login'>
@@ -37,7 +30,6 @@ function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
->>>>>>> ff94ad68f5ffe558da1554915f6c50e994a88349
   );
 }
 
