@@ -1,12 +1,14 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MainNavigator from './MainNavigator'
-import {View, Button, StyleSheet} from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import MainNavigator  from './MainNavigator'
+import {View, Button } from 'react-native';
+
+import estilos from '../components/estilos'
 
 const Tab = createBottomTabNavigator ();
 
 function TabBar({ navigation }) {
   return (
-    <View style={estilos.MenuBotoes}>
+    <View style={estilos.menuBotoes}>
     <Button
       title="Inicial"
       onPress={() => {
@@ -30,20 +32,10 @@ function TabBar({ navigation }) {
 }
 
 
-const MenuNavigator = () => {
+export default function MenuNavigator () {
   return (
-    <Tab.Navigator tabBar={TabBar} >
-      <Tab.Screen name="Main" component={MainNavigator} />
+    <Tab.Navigator tabBar={TabBar}>
+      <Tab.Screen name="Main" component={MainNavigator} options={{ headerShown: false }}/>
     </Tab.Navigator>
   );
-};
-
-export default MenuNavigator
-
-
-
-const estilos = StyleSheet.create=({
-  MenuBotoes: {
-    flexDirection: "row",
-  }
-})
+}
