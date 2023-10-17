@@ -1,42 +1,63 @@
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
-import { Appbar, TextInput, Button } from 'react-native-paper';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import LayoutBase from '../components/layoutBase';
 
 import estilos from '../components/estilos';
+import Calendario from '../components/Calendario';
+import ListaPets from '../components/ListaPets';
+import { data } from '../components/ListaPets';
 
 const CuidadorAgendamento = (props) => {
   const navigation = useNavigation();
+  const [selectedPet, setSelectedPet] = useState(null);
 
   const handleSair = () => {
     navigation.navigate('Login');
   };
+
   const handleAgendar = () => {
-    alert('Agendamento realizado!');
+    if (selectedPet) {
+      alert(`Agendamento realizado para ${selectedPet.nome}!`);
+    } else {
+      alert('Selecione um animal de estimação antes de agendar.');
+    }
+  };
+
+  const petsData = data; // Assuming data is an array of pets
+
+  const selectPet = (pet) => {
+    setSelectedPet(pet);
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <Appbar.Header>
-        <Appbar.Content title="Olá, @tutor" />
-        <Appbar.Action
-          icon={() => <Ionicons name="exit-outline" size={18} color="black" />}
-          onPress={handleSair}
-        />
-      </Appbar.Header>
-      <View style={estilos.container}>
-        <View style={estilos.quadrado}>
-          <Text style={estilos.titulo}>Agendamento</Text>
-          <View style={estilos.lista}>
-            <TouchableOpacity
-              style={estilos.botaoCuidador}
-              onPress={handleAgendar}>
-              <Text style={estilos.botaoTextoCuidador}>Agendar</Text>
-            </TouchableOpacity>
-          </View>
+    <LayoutBase>
+      <ScrollView>
+        <View>
+          <Calendario />
         </View>
+        <View style={estilos.containerInterno}>
+          <View style={{ marginTop: 5 }}>
+            <Text style={{ marginBottom: 0 }}>
+              Clique no Pet para selecionar{' '}
+            </Text>
+            <ListaPets
+              data={petsData}
+              exibirNome={true}
+              exibirFoto={true}
+              onSelect={selectPet}
+            />
+            </View>
+        </View>
+      </ScrollView>
+      <View style={{alignItems:'center'}}>
+        <TouchableOpacity
+          style={estilos.botaoCuidador}
+          onPress={handleAgendar}>
+          <Text style={estilos.botaoTextoCuidador}>Agendar</Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </LayoutBase>
   );
 };
 

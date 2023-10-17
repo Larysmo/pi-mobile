@@ -13,13 +13,13 @@ const navigation = useNavigation();
 
 
 const [nome, setNome] = useState("");
-const [telefone, setTelefone] = useState("");
-const [email, setEmail] = useState("");
-const [senha, setSenha] = useState("");
+const [raca, setRaca] = useState("");
+const [idade, setIdade] = useState("");
 
   const handlecadastrar = () => {
-    if (nome && telefone && email && senha) {
-        navigation.navigate('Inicio');
+    if (nome && raca && idade) {
+        alert("Pet cadastrado!")
+        navigation.navigate('Home');
     }else{
       alert("Por favor, preencha todos os campos!")
     }
@@ -27,41 +27,34 @@ const [senha, setSenha] = useState("");
 
   return (
       <LayoutBase>
-            <Text style={estilos.titulo}>Bem-vindo(a):</Text>
+            <Text style={estilos.titulo}>Novo Pet</Text>
             <View style={estilos.containerInterno}>
             <TextInput
               style={estilos.input}
-              label="Nome Completo"
+              label="Nome"
               value={nome}
               onChangeText={setNome}
               keyboardType="default"
               autoCapitalize="words"
             />
-            <TextInput
+      <TextInput
               style={estilos.input}
-              label="Tel. (XX) X XXXX-XXXX"
-              value={telefone}
-              onChangeText={setTelefone}
-              keyboardType="phone-pad"
-              maxLength={11}
+              label="Raca"
+              value={raca}
+              onChangeText={setRaca}
+              keyboardType="default"
+              autoCapitalize="words"
             />
-            <TextInput
+      <TextInput
               style={estilos.input}
-              label="E-mail"
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
-            />
-            <TextInput
-              style={estilos.input}
-              label="Senha"
-              value={senha}
-              onChangeText={setSenha}
-              secureTextEntry={true}
-
+              label="Idade"
+              value={idade}
+              onChangeText={setIdade}
+             keyboardType="phone-pad"
+              maxLength={2}
             />
           <TouchableOpacity style={estilos.botao} onPress={handlecadastrar}>
-          <Text style={estilos.botaoTexto}>Enviar</Text>
+          <Text style={estilos.botaoTexto}>Salvar</Text>
         </TouchableOpacity>
        </View>
     </LayoutBase>

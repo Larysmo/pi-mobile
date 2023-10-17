@@ -1,7 +1,4 @@
-import { View, FlatList, Text, TouchableOpacity } from 'react-native';
-import estilos from './estilos'
-
-
+import { View, FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 
 const ListaAgenda = () => {
@@ -49,3 +46,28 @@ const handleExcluir = () => {
 export default ListaAgenda;
 
 
+const estilos =  StyleSheet.create({
+  listaCuidadores:{
+    margin:10,
+    padding:10,
+    backgroundColor: "orange",
+    flexDirection: "row",
+    justifyContent:"space-between",
+    alignItems:"center",
+    borderRadius:10
+  },
+  botaoCuidador:{
+    backgroundColor:"black",
+    width:70,
+    height:30,
+    marginTop:20,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius:10
+  },
+  botaoTextoCuidador:{
+    fontWeight:"bold",
+    fontSize: 14,
+    color: "orange"
+  },
+})

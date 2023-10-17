@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { useState } from 'react';
+import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import estilos from '../components/estilos';
+import LayoutBase from '../components/layoutBase';
+
+
 
 const RecuperarSenha = () => {
   const [email, setEmail] = useState('');
@@ -18,9 +21,10 @@ const RecuperarSenha = () => {
   };
 
   return (
-    <View style={estilos.container}>
-      <View style={estilos.quadrado}>
-        <Text stye={estilos.texto}>Informe o e-mail cadastrado:</Text>
+    <LayoutBase>
+      <ScrollView>
+        <Text style={estilos.titulo}>E-mail cadastrado:</Text>
+        <View style={estilos.containerInterno}>
         <TextInput
           style={estilos.input}
           label="E-mail"
@@ -31,8 +35,9 @@ const RecuperarSenha = () => {
         <TouchableOpacity style={estilos.botao} onPress={handleRecuperarSenha}>
           <Text style={estilos.botaoTexto}>Enviar</Text>
         </TouchableOpacity>
-      </View>
-    </View>
+        </View>
+      </ScrollView>
+    </LayoutBase>
   );
 };
 

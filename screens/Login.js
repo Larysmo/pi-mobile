@@ -26,21 +26,24 @@ const Login = (props) => {
   }
 
   return (
-    <ScrollView style={estilos.container}>
+    <View style={{flex:1, marginTop:20}}>
+    <View style={{flex:0.1, backgroundColor:'orange' }}>
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'} >
-      <View style={estilos.quadrado}>
+      behavior={Platform.OS === 'ios' ? 'padding' : null}
+
+ >
+      <View style={estilos.containerInterno}>
         <Image source={Logomarca} />
-        <Text style={estilos.titulo}>Tutor Pet</Text>
+        <Text style={{textAlign:'center', fontSize:18}}>Tutor Pet</Text>
         <TextInput
-          style={estilos.inputLogin}
+          style={estilos.input}
           label="E-mail"
           keyboardType="email-address"
           value={email}
           onChangeText={(text) => setEmail(text)}
         />
         <TextInput
-          style={estilos.inputLogin}
+          style={estilos.input}
           label="Senha"
           secureTextEntry={true}
           value={senha}
@@ -51,13 +54,24 @@ const Login = (props) => {
           onPress={handleEntrar}>
           <Text style={estilos.botaoTexto}>Entrar</Text>
         </TouchableOpacity>
-        <View style={estilos.botaofim}>
-          <Button onPress={handleCadastrarUsuario}>Cadastrar Novo</Button>
-          <Button onPress={handleRecuperarSenha}>Recuperar Senha</Button>
+        <View style={estilos.botaoFim}>
+        <View>
+          <TouchableOpacity
+            onPress={handleCadastrarUsuario}>
+            <Text style={estilos.botaoTexto}>Cadastrar Novo</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={handleRecuperarSenha}>
+            <Text style={estilos.botaoTexto}>Recuperar Senha</Text>
+          </TouchableOpacity>
+        </View>
         </View>
       </View>
     </KeyboardAvoidingView>
-  </ScrollView>
+  </View>
+  </View>
   );
 };
 
