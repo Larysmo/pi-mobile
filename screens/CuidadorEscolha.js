@@ -1,7 +1,6 @@
-import { View, Text, FlatList, StyleSheet,TouchableOpacity, ScrollView} from 'react-native';import { Appbar, Button } from 'react-native-paper';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, FlatList,TouchableOpacity, ScrollView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import LayoutBase from '../components/layoutBase';
 import estilos from '../components/estilos';
 
 const CuidadorEscolha = (props) => {
@@ -48,18 +47,13 @@ const CuidadorEscolha = (props) => {
 ]
 
   return (
-    <View style={{ flex: 1 }}>
-      <Appbar.Header>
-        <Appbar.Content title="Olá, @tutor" />
-        <Appbar.Action
-          icon={() => <Ionicons name="exit-outline" size={18} color="black" />}
-          onPress={handleSair}
-        />
-      </Appbar.Header>
-      <View style={estilos.container}>
-        <View style={estilos.quadrado}>
-          <Text style={estilos.titulo}>Buscar Cuidador</Text>
-          <View style={estilos.lista}>
+  <LayoutBase>
+  <ScrollView>
+    <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+      <Text style={estilos.titulo}>Disponíveis para você </Text>
+      <View style={estilos.linha}></View>
+    </View>
+          <View>
       <FlatList
         data={cuidadores}
         keyExtractor={item => item.id}
@@ -78,9 +72,8 @@ const CuidadorEscolha = (props) => {
         </View>
           } />
     </View>
-        </View>
-      </View>
-    </View>
+        </ScrollView>
+      </LayoutBase>
   );
 };
 

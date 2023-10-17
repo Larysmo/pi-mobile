@@ -1,53 +1,118 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
-import { Appbar, Button } from 'react-native-paper';
-import {Ionicons} from '@expo/vector-icons';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
-import Pet1 from '../assets/caramelo.jpg';
-import Pet2 from '../assets/gatopreto.png'
+import LayoutBase from '../components/layoutBase';
 import estilos from '../components/estilos';
+import ListaPets from '../components/ListaPets';
+import { data } from '../components/ListaPets';
 
 const Perfil = (props) => {
-const navigation = useNavigation();
-
+  const navigation = useNavigation();
 
   const handleSair = () => {
-    navigation.navigate('Login')
+    navigation.navigate('Login');
+  };
+  const handleEditar = () => {
+    navigation.navigate('PerfilEditar');
+  };
+  const handleEditarPet = () => {
+    navigation.navigate('PerfilEditarPet');
+  };
+  const handleExluirConta = () => {
+    alert('Conta Excluída!');
+    navigation.navigate('Login');
+  };
+  const handleCadastrarPet = () => {
+    navigation.navigate('PerfilCadastrarPet')
   }
 
-
-  return(
-    <View style={{ flex:1 }}>
-      <Appbar.Header>
-        <Appbar.Content title="Olá, @tutor"/>
-        <Appbar.Action
-          icon={() => <Ionicons name="exit-outline" size={24} color="black"/>}
-          onPress={handleSair} 
-        />
-        </Appbar.Header>
-        <View style={estilos.container}>
-          <View style={estilos.quadrado}>
-           <View style={estilos.busca}>
+  return (
+    <LayoutBase>
+      <View>
+        <View style={{ flex: 1 }}>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}>
             <Text style={estilos.titulo}> Seus Dados</Text>
-          <Button
-          Title={"Editar"}
-          />
+            <View style={estilos.linha}></View>
           </View>
-          <View style={estilos.lista}>
-          <Text style={estilos.titulo}> Seus Pets</Text>
-            <View style={estilos.pet}>
-              <Image source={Pet1}/>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: 20,
+            }}>
+            <View>
+              <Text>Nome:</Text>
+              <Text>E-mail:</Text>
+              <Text>Telefone:</Text>
             </View>
-            <View style={estilos.pet}>
-              <Image source={Pet2}/>
+            <View>
+              <TouchableOpacity onPress={handleEditar}>
+                <Text
+                  style={[estilos.botaoTextoCuidador, { marginBottom: 20 }]}>
+                  editar
+                </Text>
+              </TouchableOpacity>
             </View>
-          </View>
           </View>
         </View>
-    </View>
+        <View
+          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <TouchableOpacity
+            style={estilos.botaoExcluir}
+            onPress={handleExluirConta}>
+            <Text style={estilos.botaoTextoExcluir}>excluir</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              marginTop: 20,
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}>
+            <Text style={estilos.titulo}> Seus Pets</Text>
+            <View style={estilos.linha}></View>
+          </View>
+          <View style={estilos.containerInterno}>
+            <ListaPets data={data} exibirNome={true} exibirFoto={true} />
+          </View>
+          <View>
+              <TouchableOpacity onPress={handleEditarPet}>
+                <Text
+                  style={[estilos.botaoTextoCuidador, { marginBottom: 20 }]}>
+                  editar
+                </Text>
+              </TouchableOpacity>
+            </View>
+          <View
+            style={{
+              marginTop: 50,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <TouchableOpacity
+            onPress={handleCadastrarPet}>
+              <View style={{ alignItems: 'center' }}>
+                <Text style={estilos.botaoTextoCuidador}>Novo Pet</Text>
+                <Ionicons name="add-outline" size={24} color="orange" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </LayoutBase>
   );
 };
 
-
-
-export default Perfil
+export default Perfil;

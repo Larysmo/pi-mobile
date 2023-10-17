@@ -7,7 +7,7 @@ import CuidadorAgendamento from '../screens/CuidadorAgendamento';
 import Perfil from '../screens/Perfil';
 import PerfilEditar from '../screens/PerfilEditar';
 import PerfilEditarPet from '../screens/PerfilEditarPet';
-import PerfilExcluir from '../screens/PerfilExcluir';
+import PerfilCadastrarPet from '../screens/PerfilCadastrarPet';
 
 
 const Stack = createNativeStackNavigator();
@@ -21,7 +21,7 @@ const MainNavigator = () => {
       <Stack.Screen name= "Perfil" component = {Perfil} /> 
       <Stack.Screen name= "PerfilEditar" component = {PerfilEditar}/>
       <Stack.Screen name= "PerfilEditarPet" component = {PerfilEditarPet}/>
-      <Stack.Screen name= "PerfilExcluir" component = {PerfilExcluir}/>
+      <Stack.Screen name= "PerfilCadastrarPet" component = {PerfilCadastrarPet}/>
     </Stack.Navigator>
   );
 }  

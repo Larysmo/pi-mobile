@@ -1,8 +1,8 @@
-import { View, FlatList, Image, Text } from 'react-native';
-import estilos from './estilos'
+import { View, ScrollView, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const ListaPets = () => {
-  const data = [
+
+
+export const data = [
     {
       id: '1',
       nome: 'Caramelo',
@@ -15,18 +15,41 @@ const ListaPets = () => {
     },
   ];
 
+
+
+
+const ListaPets = ({ data, exibirNome, exibirFoto, onSelect, selectedPet }) => {
   return (
-    <FlatList
-      data={data}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <View style={estilos.listaCuidadores}>
-          <Image source={item.imagem} style={estilos.imagemPet} />
-          <Text>{item.nome}</Text>
-        </View>
-      )}
-    />
+    <ScrollView horizontal>
+      {data.map((pet) => (
+        <TouchableOpacity key={pet.id} onPress={() => onSelect(pet)}>
+          <View style={styles.petItem}>
+            {exibirFoto && pet.imagem && (
+              <Image source={pet.imagem} style={styles.petImage} />
+            )}
+            {exibirNome && <Text>{pet.nome}</Text>}
+          </View>
+        </TouchableOpacity>
+      ))}
+    </ScrollView>
   );
 };
 
+const styles = StyleSheet.create({
+  petItem: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: 10,
+  },
+  petImage: {
+    width: 50,
+    height: 50,
+  },
+});
+
 export default ListaPets;
+
+
+
+
+
