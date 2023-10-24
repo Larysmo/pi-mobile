@@ -22,7 +22,7 @@ const estilos = StyleSheet.create({
   },
   titulo: {
     fontSize: 18,
-    alignSelf: 'left',
+    textAlign: 'left',
     marginBottom: 10,
   },
    botao:{
