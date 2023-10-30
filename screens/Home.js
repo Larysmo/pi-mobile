@@ -1,7 +1,6 @@
 import { View, Text,Alert, ScrollView } from 'react-native';
 import { TextInput,  } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import { List } from 'react-native-paper';
 import LayoutBase from '../components/layoutBase';
 
 import estilos from '../components/estilos';

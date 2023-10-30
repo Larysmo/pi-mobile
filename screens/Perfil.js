@@ -6,13 +6,13 @@ import LayoutBase from '../components/layoutBase';
 import estilos from '../components/estilos';
 import ListaPets from '../components/ListaPets';
 import { data } from '../components/ListaPets';
+import { AuthContext } from '../contexts/Auth';
+import { useContext } from 'react';
 
-const Perfil = (props) => {
+const Perfil = (children) => {
   const navigation = useNavigation();
+  const {user, register} = useContext(AuthContext);
 
-  const handleSair = () => {
-    navigation.navigate('Login');
-  };
   const handleEditar = () => {
     navigation.navigate('PerfilEditar');
   };
@@ -50,9 +50,9 @@ const Perfil = (props) => {
               padding: 20,
             }}>
             <View>
-              <Text>Nome:</Text>
-              <Text>E-mail:</Text>
-              <Text>Telefone:</Text>
+              <Text>Nome: {user.nome}</Text>
+              <Text>E-mail: {user.email}</Text>
+              <Text>Telefone: {user.telefone}</Text>
             </View>
             <View>
               <TouchableOpacity onPress={handleEditar}>

@@ -3,7 +3,6 @@ import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import estilos from '../components/estilos';
-import LayoutBase from '../components/layoutBase';
 
 
 
@@ -13,7 +12,7 @@ const RecuperarSenha = () => {
   
   const handleRecuperarSenha = () => {
     if (email) {
-      alert('Nova senha enviada!');
+      alert('Nova senha enviada para o email informado!');
       navigation.navigate('Login');
     } else {
       alert('Por favor, informe o e-mail cadastrado!');
@@ -21,8 +20,17 @@ const RecuperarSenha = () => {
   };
 
   return (
-    <LayoutBase>
-      <ScrollView>
+   <View style={{ flex: 1 }}>
+      <View style={{ flex: 0.1 }}>
+        <View
+          style={{
+            backgroundColor: 'orange',
+            padding: 10,
+          }}>
+          <Text>Recuperar Senha</Text>
+        </View>
+      </View>
+      <ScrollView style={{ flex: 0.9, backgroundColor: 'white' }}>
         <Text style={estilos.titulo}>E-mail cadastrado:</Text>
         <View style={estilos.containerInterno}>
         <TextInput
@@ -37,7 +45,7 @@ const RecuperarSenha = () => {
         </TouchableOpacity>
         </View>
       </ScrollView>
-    </LayoutBase>
+    </View>
   );
 };
 
