@@ -1,50 +1,17 @@
-import { View, Text, FlatList,TouchableOpacity, ScrollView} from 'react-native';
+import { View, Text, FlatList, ScrollView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import LayoutBase from '../components/layoutBase';
 import estilos from '../components/estilos';
+import { Pressable } from 'react-native';
+import { List, Avatar } from 'react-native-paper';
+
 
 const CuidadorEscolha = (props) => {
   const navigation = useNavigation();
-
   const handleSair = () => {
     navigation.navigate('Login');
   };
 
-  const cuidadores = [
-  {
-    id: "001",
-    desc: ["Bruno Vaz", "Samambaia"]
-  },
-  {
-    id: "002",
-    desc: ["Saind", "Guará"]
-  },
-  {
-    id: "003",
-    desc: ["Laryssa", "Plano Piloto"]
-  },
-  {
-    id: "004",
-    desc: ["Iago", "Gama"],
-  },
-  {
-    id: "005",
-    desc: ["Bruno Vaz", "Samambaia"]
-  },
-  {
-    id: "006",
-    desc: ["Saind", "Guará"]
-  },
-  {
-    id: "007",
-    desc: ["Laryssa", "Plano Piloto"]
-  },
-  {
-    id: "008",
-    desc: ["Iago", "Gama"],
-  }, 
-
-]
 
   return (
   <LayoutBase>
@@ -53,28 +20,38 @@ const CuidadorEscolha = (props) => {
       <Text style={estilos.titulo}>Disponíveis para você </Text>
       <View style={estilos.linha}></View>
     </View>
-          <View>
-      <FlatList
-        data={cuidadores}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => 
-        <View style={estilos.listaCuidadores}>
-          <Text>Nome: {item.desc[0]} - Local: {item.desc[1]} </Text>
-         <TouchableOpacity
-              style={estilos.botaoCuidador}
-              onPress={() => 
-              {
-               navigation.navigate("CuidadorAgendamento")
-              }}
-            >
-              <Text style={estilos.botaoTextoCuidador}>Agendar</Text>
-            </TouchableOpacity>
-        </View>
-          } />
+      <View>
+      <List.Item
+        title="Bruno"
+        description="Samambaia"
+        left={(props) => <List.Icon {...props} icon="folder" />}
+        onPress={() => {navigation.navigate("CuidadorAgendamento")}}
+      />
+
+      <List.Item
+        title="Iago"
+        description="Gama"
+        left={(props) => <List.Icon {...props} icon="folder" />}
+        onPress={() => {navigation.navigate("CuidadorAgendamento")}}
+      />
+
+      <List.Item
+        title="Laryssa"
+        description="Asa Sul"
+        left={(props) => <List.Icon {...props} icon="folder" />}
+        onPress={() => {navigation.navigate("CuidadorAgendamento")}}
+      />
+
+      <List.Item
+        title="Saind"
+        description="Guará"
+        left={(props) => <List.Icon {...props} icon="folder" />}
+        onPress={() => {navigation.navigate("CuidadorAgendamento")}}
+      />
+
     </View>
         </ScrollView>
       </LayoutBase>
   );
 };
-
 export default CuidadorEscolha;
