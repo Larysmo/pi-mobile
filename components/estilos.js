@@ -24,6 +24,7 @@ const estilos = StyleSheet.create({
     fontSize: 18,
     textAlign: 'left',
     marginBottom: 10,
+    marginLeft: 10,
   },
    botao:{
     backgroundColor:"black",

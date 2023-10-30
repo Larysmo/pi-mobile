@@ -20,12 +20,8 @@ const [senha, setSenha] = useState("");
   const handleSalvar = () => {
     if (nome || telefone || email || senha) {
        alert("Dado(s) Atualizado(s)!")
-       navigation.navigate('Home');
-      }else{
-        alert("Por favor, preencha todos os campos!")
-      }
-  }
-
+    }
+}
    return (
       <LayoutBase>
             <Text style={{textAlign:'center', fontSize:18, margin:10}}>Dados</Text>

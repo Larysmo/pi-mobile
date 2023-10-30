@@ -1,5 +1,5 @@
-import { View, ScrollView, Image, Text, Pressable, StyleSheet } from 'react-native';
-import PerfilEditarPet from '../screens/PerfilEditarPet';
+import { View, ScrollView, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
 
 
 export const data = [
@@ -22,15 +22,14 @@ const ListaPets = ({ data, exibirNome, exibirFoto, onSelect, selectedPet }) => {
   return (
     <ScrollView horizontal>
       {data.map((pet) => (
-        <Pressable key={pet.id} onPress={() => onSelect(pet)}>
+        <TouchableOpacity key={pet.id} onPress={() => onSelect(pet)}>
           <View style={styles.petItem}>
             {exibirFoto && pet.imagem && (
               <Image source={pet.imagem} style={styles.petImage} />
             )}
             {exibirNome && <Text>{pet.nome}</Text>}
-            
           </View>
-        </Pressable >
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );
@@ -41,7 +40,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     margin: 10,
-    justifyContent: 'center'
   },
   petImage: {
     width: 50,
