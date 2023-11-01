@@ -94,6 +94,16 @@ const estilos = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'orange',
   },
+  petItem: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: 10,
+    justifyContent: 'center'
+  },
+  petImage: {
+    width: 50,
+    height: 50,
+  },
 });
 
 export default estilos
