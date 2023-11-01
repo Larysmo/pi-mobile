@@ -15,7 +15,6 @@ const Home = (props) => {
   return (
     
     <LayoutBase>
-      <ScrollView>
         <View>
           <Text style={estilos.titulo}> Buscar Pet Sitter</Text>
           <TextInput style={estilos.input} label="Escolha sua cidade" />
@@ -37,7 +36,6 @@ const Home = (props) => {
             exibirNome={true}
             exibirFoto={true} />
         </View>
-      </ScrollView>
     </LayoutBase>
   );
 };
