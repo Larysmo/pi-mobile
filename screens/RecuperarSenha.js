@@ -1,22 +1,21 @@
-import { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { TextInput, HelperText } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import estilos from '../components/estilos';
 
-
-
 const RecuperarSenha = () => {
-  const [email, setEmail] = useState('');
-  const navigation = useNavigation();
+   const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+   const navigation = useNavigation();
   
-  const handleRecuperarSenha = () => {
-    if (email) {
+  const onSubmit = (data) => {
       alert('Nova senha enviada para o email informado!');
-      navigation.navigate('Login');
-    } else {
-      alert('Por favor, informe o e-mail cadastrado!');
-    }
+      navigation.navigate('Login'); 
   };
 
   return (
@@ -33,14 +32,27 @@ const RecuperarSenha = () => {
       <ScrollView style={{ flex: 0.9, backgroundColor: 'white' }}>
         <Text style={estilos.titulo}>E-mail cadastrado:</Text>
         <View style={estilos.containerInterno}>
-        <TextInput
-          style={estilos.input}
-          label="E-mail"
-          keyboardType="email-address"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TouchableOpacity style={estilos.botao} onPress={handleRecuperarSenha}>
+        <Controller
+          control={control}
+          rules={{
+            required: { value: true, message: 'Email obrigatorio' },
+            pattern: {value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i, message:'Email com formato inválido!'},
+          }}
+          render={({ field: { value, onChange } }) => (
+            <TextInput
+              style={estilos.input}
+              label="E-mail"
+              keyboardType="email-address"
+              value={value}
+              onChangeText={onChange}
+            />
+          )}
+          name="email"
+          />
+          <HelperText type="error" visible={true}>
+          {errors.email && errors.email.message}
+          </HelperText>
+        <TouchableOpacity style={estilos.botao} onPress={handleSubmit(onSubmit)}>
           <Text style={estilos.botaoTexto}>Enviar</Text>
         </TouchableOpacity>
         </View>
