@@ -19,9 +19,9 @@ const ListaPets = ({ data, exibirNome, exibirFoto, onSelect, selectedPet }) => {
     <ScrollView horizontal>
       {data.map((pet) => (
         <Pressable key={pet.id} onPress={() => onSelect(pet)}>
-          <View style={styles.petItem}>
+          <View >
             {exibirFoto && pet.imagem && (
-              <Image source={pet.imagem} style={styles.petImage} />
+              <Image source={pet.imagem} />
             )}
             {exibirNome && <Text>{pet.nome}</Text>}
 

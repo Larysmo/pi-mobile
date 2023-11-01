@@ -11,7 +11,7 @@ import { useContext } from 'react';
 
 const Perfil = (children) => {
   const navigation = useNavigation();
-  const {user, register} = useContext(AuthContext);
+  const {user, logout} = useContext(AuthContext);
 
   const handleEditar = () => {
     navigation.navigate('PerfilEditar');
@@ -21,7 +21,7 @@ const Perfil = (children) => {
   };
   const handleExluirConta = () => {
     alert('Conta Excluída!');
-    navigation.navigate('Login');
+    logout()
   };
   const handleCadastrarPet = () => {
     navigation.navigate('PerfilCadastrarPet')
@@ -50,9 +50,9 @@ const Perfil = (children) => {
               padding: 20,
             }}>
             <View>
-              <Text>Nome: {user.nome}</Text>
-              <Text>E-mail: {user.email}</Text>
-              <Text>Telefone: {user.telefone}</Text>
+              <Text style={estilos.perfilTexto}>Nome: {user.nome}</Text>
+              <Text style={estilos.perfilTexto}>E-mail: {user.email}</Text>
+              <Text style={estilos.perfilTexto}>Telefone: {user.telefone}</Text>        
             </View>
             <View>
               <TouchableOpacity onPress={handleEditar}>
@@ -86,14 +86,15 @@ const Perfil = (children) => {
           </View>
           <View style={estilos.containerInterno}>
             <ListaPets data={data} exibirNome={true} exibirFoto={true} />
-          </View>
-          <View>
-              <TouchableOpacity onPress={handleEditarPet}>
+            <TouchableOpacity onPress={handleEditarPet}>
                 <Text
                   style={[estilos.botaoTextoCuidador, { marginBottom: 20 }]}>
                   editar
                 </Text>
               </TouchableOpacity>
+          </View>
+          <View>
+              
             </View>
           <View
             style={{
