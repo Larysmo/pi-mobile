@@ -2,7 +2,7 @@ import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { TextInput, HelperText } from 'react-native-paper';
 import { useForm, Controller } from 'react-hook-form';
 import estilos from '../components/estilos';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/Auth';
 
 const CadastroUsuario = () => {
@@ -14,6 +14,8 @@ const CadastroUsuario = () => {
   } = useForm();
 
   const { user, login, logout, register  } = useContext(AuthContext);
+  const [exibeSenha, setExibeSenha] = useState(false);
+
   
   const onSubmit = (data) => {
     register(data.email, data.senha, data.nome, data.telefone)
@@ -51,15 +53,14 @@ const CadastroUsuario = () => {
             )}
             name="nome"
           />
-          {errors.nome && (
             <HelperText type="error" visible={true}>
-              {errors.nome.message}
+              {errors.nome && errors.nome.message}
             </HelperText>
-          )}
           <Controller
             control={control}
             rules={{
               required: { value: true, message: 'Telefone obrigatorio' },
+              minLength: { value: 11, message: 'Telefone incompleto'}
             }}
             render={({ field: { value, onChange } }) => (
               <TextInput
@@ -73,11 +74,9 @@ const CadastroUsuario = () => {
             )}
             name="telefone"
           />
-          {errors.telefone && (
             <HelperText type="error" visible={true}>
-              {errors.telefone.message}
+              {errors.telefone && errors.telefone.message}
             </HelperText>
-          )}
           <Controller
             control={control}
             rules={{
@@ -91,15 +90,14 @@ const CadastroUsuario = () => {
                 value={value}
                 onChangeText={onChange}
                 keyboardType="email-address"
+                autoCapitalize="none"
               />
             )}
             name="email"
           />
-          {errors.email && (
             <HelperText type="error" visible={true}>
-              {errors.email.message}
+              {errors.email && errors.email.message}
             </HelperText>
-          )}
           <Controller
             control={control}
             rules={{
@@ -111,16 +109,16 @@ const CadastroUsuario = () => {
                 label="Senha"
                 value={value}
                 onChangeText={onChange}
-                secureTextEntry={true}
+                secureTextEntry={!exibeSenha}
+                right={<TextInput.Icon icon="eye" color="#6b6b6b" onPress={() => setExibeSenha(!exibeSenha)}/>}
+
               />
             )}
             name="senha"
           />
-          {errors.senha && (
             <HelperText type="error" visible={true}>
-              {errors.senha.message}
+                {errors.senha && errors.senha.message}
             </HelperText>
-          )}
           <TouchableOpacity
             style={estilos.botao}
             onPress={handleSubmit(onSubmit)}>

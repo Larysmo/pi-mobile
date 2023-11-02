@@ -10,8 +10,6 @@ const estilos = StyleSheet.create({
   input: {
     width: "70%",
     height:50,
-    marginBottom: 10,
-    borderRadius:10,
   },
   busca: {
     flex: 0,

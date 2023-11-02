@@ -1,5 +1,5 @@
 import { Text, View, Image, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
-import { TextInput, HelperText } from 'react-native-paper';
+import { TextInput, HelperText, Colors } from 'react-native-paper';
 import Logomarca from '../assets/logo.png';
 import { useNavigation } from '@react-navigation/native';
 import { useState, useContext } from 'react';
@@ -30,13 +30,13 @@ const Login = () => {
   };
 
   return (
-    <View style={{ flex: 1, marginTop: 20 }}>
+    <View style={{ flex: 1, marginTop: 15 }}>
       <View style={{ flex: 0.1, backgroundColor: 'orange' }}>
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : null}>
           <View style={estilos.containerInterno}>
             <Image source={Logomarca} />
-            <Text style={{ textAlign: 'center', fontSize: 18 }}>Tutor Pet</Text>
+            <Text style={{ textAlign: 'center', fontSize: 18, marginBottom:15 }}>Tutor Pet</Text>
             <Controller
               control={control}
               rules={{
@@ -50,6 +50,8 @@ const Login = () => {
                   keyboardType="email-address"
                   value={value}
                   onChangeText={onChange}
+                  autoCapitalize="none"
+
                 />
               )}
               name="email"
@@ -57,12 +59,6 @@ const Login = () => {
             <HelperText type="error" visible={true}>
               {errors.email && errors.email.message}
             </HelperText>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 20,
-              }}>
               <Controller
                 control={control}
                 rules={{
@@ -74,6 +70,7 @@ const Login = () => {
                     label="Senha"
                     secureTextEntry={!exibeSenha}
                     value={value}
+                    right={<TextInput.Icon icon="eye" color="#6b6b6b" onPress={() => setExibeSenha(!exibeSenha) }/>}
                     onChangeText={onChange}
                   />
                 )}
@@ -82,16 +79,6 @@ const Login = () => {
               <HelperText type="error" visible={true}>
                 {errors.senha && errors.senha.message}
               </HelperText>
-              <TouchableOpacity
-                style={{ marginLeft: 10 }}
-                onPress={() => setExibeSenha(!exibeSenha)}>
-                {exibeSenha ? (
-                  <Icon name="eye" size={25} color="#000" />
-                ) : (
-                  <Icon name="eye-off" size={25} color="#000" />
-                )}
-              </TouchableOpacity>
-            </View>
             <TouchableOpacity style={estilos.botao} onPress={handleSubmit(onSubmit)}>
               <Text style={estilos.botaoTexto}>Entrar</Text>
             </TouchableOpacity>
