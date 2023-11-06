@@ -6,6 +6,7 @@ const estilos = StyleSheet.create({
   containerInterno: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 15,
   },
   input: {
     width: "70%",
@@ -23,6 +24,7 @@ const estilos = StyleSheet.create({
     textAlign: 'left',
     marginBottom: 10,
     marginLeft: 10,
+    marginTop: 20,
   },
    botao:{
     backgroundColor:"black",
@@ -81,10 +83,11 @@ const estilos = StyleSheet.create({
     borderRadius:10
   },
   linha: {
-    width: '70%',
+    width: '68%',
     height: 2,
     justifyContent: 'center',
     backgroundColor: 'orange',
+    marginTop: 12,
   },
   linha2: {
     width: '35%',

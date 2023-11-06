@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -30,7 +30,7 @@ const Perfil = (children) => {
   return (
     <LayoutBase>
       <View>
-        <View style={{ flex: 1 }}>
+        <ScrollView>
           <View
             style={{
               flex: 1,
@@ -43,7 +43,6 @@ const Perfil = (children) => {
           </View>
           <View
             style={{
-              flex: 1,
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -63,9 +62,9 @@ const Perfil = (children) => {
               </TouchableOpacity>
             </View>
           </View>
-        </View>
+        </ScrollView>
         <View
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          style={{ alignItems: 'center', justifyContent: 'center' }}>
           <TouchableOpacity
             style={estilos.botaoExcluir}
             onPress={handleExluirConta}>
@@ -75,7 +74,6 @@ const Perfil = (children) => {
         <View>
           <View
             style={{
-              flex: 1,
               flexDirection: 'row',
               marginTop: 20,
               alignItems: 'center',
@@ -86,12 +84,6 @@ const Perfil = (children) => {
           </View>
           <View style={estilos.containerInterno}>
             <ListaPets data={data} exibirNome={true} exibirFoto={true} />
-            <TouchableOpacity onPress={handleEditarPet}>
-                <Text
-                  style={[estilos.botaoTextoCuidador, { marginBottom: 20 }]}>
-                  editar
-                </Text>
-              </TouchableOpacity>
           </View>
           <View>
               
@@ -99,16 +91,24 @@ const Perfil = (children) => {
           <View
             style={{
               marginTop: 50,
-              justifyContent: 'center',
-              alignItems: 'center',
+              justifyContent: 'space-around',
+              alignItems: 'stretch',
+              flexDirection: 'row'
+
             }}>
-            <TouchableOpacity
-            onPress={handleCadastrarPet}>
+ 
+            <Pressable onPress={handleEditarPet}>
+              <View style={{ alignItems: 'center', padding:5 }}>
+                <Text style={estilos.botaoTextoCuidador}>Editar Pet</Text>
+                <Ionicons name="pencil" size={20} color="orange" />
+              </View>
+            </Pressable>
+            <Pressable onPress={handleCadastrarPet}>
               <View style={{ alignItems: 'center' }}>
                 <Text style={estilos.botaoTextoCuidador}>Novo Pet</Text>
                 <Ionicons name="add-outline" size={24} color="orange" />
               </View>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
       </View>
