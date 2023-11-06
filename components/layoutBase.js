@@ -24,9 +24,9 @@ const LayoutBase = ({ children }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <ScrollView style={{ flex: 0.9, backgroundColor: 'white',  }}>
+      <View style={{ flex: 1.5, backgroundColor: 'white',  }}>
         {children}
-      </ScrollView>
+      </View>
     </View>
   );
 };

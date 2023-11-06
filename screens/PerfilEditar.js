@@ -34,6 +34,7 @@ const [senha, setSenha] = useState("");
               keyboardType="default"
               autoCapitalize="words"
             />
+            
             <TextInput
               style={estilos.input}
               label="Tel. (XX) X XXXX-XXXX"
