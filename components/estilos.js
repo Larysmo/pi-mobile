@@ -30,7 +30,7 @@ const estilos = StyleSheet.create({
     backgroundColor:"black",
     width:80,
     height:40,
-    marginTop:20,
+    marginTop:0,
     justifyContent: "center",
     alignItems: "center",
     borderRadius:10

@@ -4,6 +4,9 @@ import { useForm, Controller } from 'react-hook-form';
 import estilos from '../components/estilos';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/Auth';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../services/firebaseConfig";
+
 
 const CadastroUsuario = () => {
   
@@ -13,12 +16,21 @@ const CadastroUsuario = () => {
     formState: { errors },
   } = useForm();
 
-  const { user, login, logout, register  } = useContext(AuthContext);
+  const { user, login } = useContext(AuthContext);
   const [exibeSenha, setExibeSenha] = useState(false);
 
   
   const onSubmit = (data) => {
-    register(data.email, data.senha, data.nome, data.telefone)
+    createUserWithEmailAndPassword(auth, data.email, data.senha)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    login(user.email, data.senha)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert('Usuário já cadastrado!');
+  });
   };
 
   return (

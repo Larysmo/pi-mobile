@@ -3,6 +3,8 @@ import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { TextInput, HelperText } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import estilos from '../components/estilos';
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../services/firebaseConfig";
 
 const RecuperarSenha = () => {
    const {
@@ -14,8 +16,16 @@ const RecuperarSenha = () => {
    const navigation = useNavigation();
   
   const onSubmit = (data) => {
+    sendPasswordResetEmail(auth, data.email)
+    .then(() => {
       alert('Nova senha enviada para o email informado!');
-      navigation.navigate('Login'); 
+      navigation.navigate('Login');
+    })
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    
+  }) 
   };
 
   return (
@@ -45,6 +55,7 @@ const RecuperarSenha = () => {
               keyboardType="email-address"
               value={value}
               onChangeText={onChange}
+              autoCapitalize="none"
             />
           )}
           name="email"

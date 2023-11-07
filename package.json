@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
+    "@react-native-async-storage/async-storage": "^1.19.4",
     "@react-navigation/bottom-tabs": "*",
     "@react-navigation/native": "6.0.10",
     "@react-navigation/native-stack": "*",
@@ -15,6 +16,7 @@
     "adb": "^0.2.0",
     "expo": "^49.0.16",
     "expo-status-bar": "~1.6.0",
+    "firebase": "^10.5.2",
     "moment": "*",
     "react": "18.2.0",
     "react-hook-form": "*",
