@@ -3,10 +3,11 @@ import { TextInput, HelperText, Colors } from 'react-native-paper';
 import Logomarca from '../assets/logo.png';
 import { useNavigation } from '@react-navigation/native';
 import { useState, useContext } from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
 import estilos from '../components/estilos';
 import { AuthContext } from '../contexts/Auth';
 import { useForm, Controller } from 'react-hook-form';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../services/firebaseConfig";
 
 const Login = () => {
   const navigation = useNavigation()
@@ -20,8 +21,23 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    login(data.email, data.senha)
+    signInWithEmailAndPassword(auth, data.email, data.senha)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      login(user.email, data.senha)
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      if(errorCode === 'auth/user-not-found'){
+          alert('Usuário não cadastrado!');
+      } else {
+          alert('Senha incorreta!');
+      } 
+      }
+    );
   } 
+
   const handleCadastrarUsuario = () => {
     navigation.navigate('CadastroUsuario');
   };

@@ -8,6 +8,8 @@ import ListaPets from '../components/ListaPets';
 import { data } from '../components/ListaPets';
 import { AuthContext } from '../contexts/Auth';
 import { useContext } from 'react';
+import { deleteUser } from "firebase/auth";
+import { auth } from "../services/firebaseConfig";
 
 const Perfil = (children) => {
   const navigation = useNavigation();
@@ -20,8 +22,15 @@ const Perfil = (children) => {
     navigation.navigate('PerfilEditarPet');
   };
   const handleExluirConta = () => {
-    alert('Conta Excluída!');
-    logout()
+    const user = auth.currentUser;
+
+    deleteUser(user).then(() => {
+      alert('Conta Excluída!');
+      logout()
+    }).catch((error) => {
+      alert('Operação não finalizada!')
+});
+    
   };
   const handleCadastrarPet = () => {
     navigation.navigate('PerfilCadastrarPet')
