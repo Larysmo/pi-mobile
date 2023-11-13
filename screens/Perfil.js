@@ -10,28 +10,34 @@ import { AuthContext } from '../contexts/Auth';
 import { useContext } from 'react';
 import { deleteUser } from "firebase/auth";
 import { auth } from "../services/firebaseConfig";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from '../services/firebaseConfig';
+
 
 const Perfil = (children) => {
   const navigation = useNavigation();
-  const {user, logout} = useContext(AuthContext);
+  const {user, logout, register} = useContext(AuthContext);
 
   const handleEditar = () => {
     navigation.navigate('PerfilEditar');
   };
+  
   const handleEditarPet = () => {
     navigation.navigate('PerfilEditarPet');
   };
-  const handleExluirConta = () => {
+  
+  const handleExluirConta = async() => {
     const user = auth.currentUser;
 
-    deleteUser(user).then(() => {
-      alert('Conta Excluída!');
+    await deleteDoc(doc(db, "users", "userId"));
+
+    await deleteUser(user).then(() => {
+      alert("Conta excluída!")
       logout()
-    }).catch((error) => {
-      alert('Operação não finalizada!')
-});
-    
+    })
+   .catch((error) => {});
   };
+  
   const handleCadastrarPet = () => {
     navigation.navigate('PerfilCadastrarPet')
   }
@@ -61,6 +67,7 @@ const Perfil = (children) => {
               <Text style={estilos.perfilTexto}>Nome: {user.nome}</Text>
               <Text style={estilos.perfilTexto}>E-mail: {user.email}</Text>
               <Text style={estilos.perfilTexto}>Telefone: {user.telefone}</Text>        
+              <Text style={estilos.perfilTexto}>Id: {user.userId}</Text>        
             </View>
             <View>
               <TouchableOpacity onPress={handleEditar}>
@@ -92,7 +99,10 @@ const Perfil = (children) => {
             <View style={estilos.linha}></View>
           </View>
           <View style={estilos.containerInterno}>
-            <ListaPets data={data} exibirNome={true} exibirFoto={true} />
+            <ListaPets
+              data={data}
+              exibirNome={true}
+              exibirFoto={true} />
           </View>
           <View>
               

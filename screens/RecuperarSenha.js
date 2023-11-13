@@ -18,8 +18,8 @@ const RecuperarSenha = () => {
   const onSubmit = (data) => {
     sendPasswordResetEmail(auth, data.email)
     .then(() => {
-      alert('Nova senha enviada para o email informado!');
-      navigation.navigate('Login');
+      alert('Nova senha enviada para o email cadastrado!');
+      navigation.pop()
     })
     .catch((error) => {
     const errorCode = error.code;
