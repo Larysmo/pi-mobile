@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import LayoutBase from '../components/layoutBase';
 
@@ -7,6 +7,7 @@ import estilos from '../components/estilos';
 import Calendario from '../components/Calendario';
 import ListaPets from '../components/ListaPets';
 import { data } from '../components/ListaPets';
+import { PetContext } from '../contexts/PetContext';
 
 const CuidadorAgendamento = (props) => {
   const navigation = useNavigation();
@@ -27,6 +28,7 @@ const CuidadorAgendamento = (props) => {
   const petsData = data; // Assuming data is an array of pets
 
   const selectPet = (pet) => {
+  
     setSelectedPet(pet);
   };
 
@@ -38,24 +40,26 @@ const CuidadorAgendamento = (props) => {
         </View>
         <View style={estilos.containerInterno}>
           <View style={{ marginTop: 5 }}>
+          
             <Text style={{ marginBottom: 0 }}>
               Clique no Pet para selecionar{' '}
             </Text>
-            <ListaPets
-              data={petsData}
-              exibirNome={true}
-              exibirFoto={true}
-              onSelect={selectPet}
-            />
-            </View>
+
+            <View>
+              <ListaPets
+              />
+              </View>
+          </View>
         </View>
+      
       </ScrollView>
+      
       <View style={{alignItems:'center'}}>
-        <TouchableOpacity
+        <Pressable
           style={estilos.botaoCuidador}
           onPress={handleAgendar}>
           <Text style={estilos.botaoTextoCuidador}>Agendar</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </LayoutBase>
   );

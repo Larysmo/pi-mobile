@@ -10,6 +10,7 @@ import { AuthContext } from '../contexts/Auth';
 import { useContext } from 'react';
 import { deleteUser } from "firebase/auth";
 import { auth } from "../services/firebaseConfig";
+import { PetContext } from '../contexts/PetContext';
 
 const Perfil = (children) => {
   const navigation = useNavigation();
@@ -42,7 +43,6 @@ const Perfil = (children) => {
         <ScrollView>
           <View
             style={{
-              flex: 1,
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -66,7 +66,7 @@ const Perfil = (children) => {
               <TouchableOpacity onPress={handleEditar}>
                 <Text
                   style={[estilos.botaoTextoCuidador, { marginBottom: 20 }]}>
-                  editar
+                  Editar
                 </Text>
               </TouchableOpacity>
             </View>
@@ -91,8 +91,8 @@ const Perfil = (children) => {
             <Text style={estilos.titulo}> Seus Pets</Text>
             <View style={estilos.linha}></View>
           </View>
-          <View style={estilos.containerInterno}>
-            <ListaPets data={data} exibirNome={true} exibirFoto={true} />
+          <View>
+            <ListaPets/>
           </View>
           <View>
               
