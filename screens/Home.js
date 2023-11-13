@@ -1,16 +1,16 @@
+import { useContext } from 'react';
 import { View, Text,Alert, ScrollView } from 'react-native';
 import { TextInput,  } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
 import LayoutBase from '../components/layoutBase';
 
 import estilos from '../components/estilos';
 import ListaAgenda from '../components/ListaAgenda'
 import ListaPets from '../components/ListaPets'
-import { data } from '../components/ListaPets';
+import { PetContext } from '../contexts/PetContext';
 
 const Home = (props) => {
-  const navigation = useNavigation();
 
+  const {pets} = useContext(PetContext); //traz apenas produtos
   
   return (
     
@@ -30,11 +30,9 @@ const Home = (props) => {
           <Text style={estilos.titulo}> Seus Pets</Text>
           <View style={estilos.linha}></View>
         </View>
-        <View style={{flex:1}}>
-          <ListaPets
-            data={data}
-            exibirNome={true}
-            exibirFoto={true} />
+        <View style={{flex:1, flexDirection: 'row'}}>
+        <ListaPets
+    />
         </View>
     </LayoutBase>
   );

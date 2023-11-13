@@ -1,6 +1,6 @@
+import { useForm, Controller } from 'react-hook-form';
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { TextInput, HelperText } from 'react-native-paper';
-import { useForm, Controller } from 'react-hook-form';
 import estilos from '../components/estilos';
 import { useContext, useState, useEffect,  } from 'react';
 import { useNavigation } from '@react-navigation/native';

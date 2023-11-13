@@ -1,36 +1,37 @@
-import { View, ScrollView, Image, Text, Pressable, StyleSheet } from 'react-native';
-import PerfilEditarPet from '../screens/PerfilEditarPet';
+import { useContext } from 'react';
+import { PetContext } from '../contexts/PetContext';
+import { ScrollView, View, StyleSheet, Image, Text, Pressable, FlatList } from 'react-native';
 
-import estilos from './estilos';
+const ListaPets = () => {
+  // const contexto = useContext(ProdutoContext); //traz produtos e setProdutos (todo o contexto)
+  const {pets} = useContext(PetContext); //traz apenas produtos
 
-
-export const data = [
-    {
-      id: '1',
-      nome: 'Caramelo',
-      imagem: require('../assets/caramelo.jpg'),
-    },
-    {
-      id: '2',
-      nome: 'Blackout',
-      imagem: require('../assets/gatopreto.png'),
-    },
-  ];
-const ListaPets = ({ data, exibirNome, exibirFoto, onSelect, selectedPet }) => {
   return (
-    <ScrollView horizontal>
-      {data.map((pet) => (
-        <Pressable key={pet.id} onPress={() => onSelect(pet)}>
-          <View style={estilos.petItem}>
-            {exibirFoto && pet.imagem && (
-              <Image source={pet.imagem} style={estilos.petImage} />
-            )}
-            {exibirNome && <Text>{pet.nome}</Text>}
-
-          </View>
-        </Pressable >
-      ))}
-    </ScrollView>
+    <View>
+    <FlatList
+    data={pets} 
+    horizontal={true}
+    keyExtractor={(item) => item.id} //busca elementos a partir de um elemento-chave. Neste caso, é o id. Sem ele não tem diferenciação de objetos
+    renderItem={({item}) => ( //renderiza elementos da lista, conforme item passado no keyExtractor
+      <ScrollView horizontal  > 
+        <View>
+          <Image source={item.imagem} style={styles.imagemPetLista}/>
+          <Text> {item.nome} </Text>
+        </View>
+      </ScrollView> 
+    )}
+    />
+    </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  imagemPetLista: {
+    height: 50,
+    width: 50,
+    borderRadius: 10
+  },
+});
+
   export default ListaPets
+

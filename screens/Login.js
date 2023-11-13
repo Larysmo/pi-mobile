@@ -1,3 +1,4 @@
+import { useForm, Controller } from 'react-hook-form';
 import { Text, View, Image, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
 import { TextInput, HelperText, Colors } from 'react-native-paper';
 import Logomarca from '../assets/logo.png';
@@ -5,7 +6,6 @@ import { useNavigation } from '@react-navigation/native';
 import { useState, useContext } from 'react';
 import estilos from '../components/estilos';
 import { AuthContext } from '../contexts/Auth';
-import { useForm, Controller } from 'react-hook-form';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../services/firebaseConfig";
 
