@@ -2,10 +2,14 @@ import { useForm, Controller } from 'react-hook-form';
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { TextInput, HelperText } from 'react-native-paper';
 import estilos from '../components/estilos';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect,  } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../contexts/Auth';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../services/firebaseConfig";
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { db } from '../services/firebaseConfig';
+
 
 
 const CadastroUsuario = () => {
@@ -16,22 +20,46 @@ const CadastroUsuario = () => {
     formState: { errors },
   } = useForm();
 
-  const { user, login } = useContext(AuthContext);
+  const { user, register} = useContext(AuthContext);
   const [exibeSenha, setExibeSenha] = useState(false);
+  const navigation = useNavigation()
 
   
-  const onSubmit = (data) => {
-    createUserWithEmailAndPassword(auth, data.email, data.senha)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    login(user.email, data.senha)
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert('Usuário já cadastrado!');
-  });
+  const onSubmit = async (data) => {
+    try {
+      // Firebase Autenticacao
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.senha);
+      
+      const user = userCredential.user;
+      const userId = user.uid;
+   
+      // Firestore
+      const db = getFirestore();
+      const userDocRef = doc(db, "users", userId);
+      await setDoc(userDocRef, {
+        name: data.nome,
+        telefone: data.telefone,
+        email: user.email
+      });
+  
+    
+      register(userId, user.email, data.senha, data.nome, data.telefone);
+      navigation.pop()
+      } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert('Erro ao cadastrar usuário: ' + errorMessage);
+    }
   };
+  useEffect(() => {
+    async function criarCadastro() {
+    if (user) {
+      const userId = user.uid;
+      register(userId, user.email, null, null, null);
+    }
+  }
+    criarCadastro();
+  }, []);
 
   return (
     <View style={{ flex: 1 }}>
@@ -59,7 +87,6 @@ const CadastroUsuario = () => {
                 value={value}
                 onChangeText={onChange}
                 keyboardType="default"
-                vaness
                 autoCapitalize="words"
               />
             )}
@@ -139,7 +166,7 @@ const CadastroUsuario = () => {
         </View>
       </ScrollView>
     </View>
-  );
-};
+    );
+}
 
 export default CadastroUsuario;

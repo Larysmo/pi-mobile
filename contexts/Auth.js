@@ -20,13 +20,14 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  const register = (email, senha, nome, telefone) => {
+  const register = (userId, email, senha, nome, telefone) => {
+    
     setUser({
+      userId,
       email,
       senha,
       nome,
       telefone,
-      logado: true,
     });
   };
 
@@ -34,9 +35,10 @@ const AuthProvider = ({ children }) => {
     user,
     login,
     logout,
-    register,
+    register
   };
-  return (
+
+    return (
     <AuthContext.Provider value={contexto}>{children}</AuthContext.Provider>
   );
 };

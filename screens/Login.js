@@ -12,7 +12,7 @@ import { auth } from "../services/firebaseConfig";
 const Login = () => {
   const navigation = useNavigation()
   const [exibeSenha, setExibeSenha] = useState(false);
-  const { usuario, login, logout } = useContext(AuthContext);
+  const {login} = useContext(AuthContext);
 
   const {
     control,
@@ -29,10 +29,10 @@ const Login = () => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      if(errorCode === 'auth/user-not-found'){
+      if(errorCode === 'auth/invalid-login-credentials'){
           alert('Usuário não cadastrado!');
       } else {
-          alert('Senha incorreta!');
+          alert('Dados incorretos!');
       } 
       }
     );
