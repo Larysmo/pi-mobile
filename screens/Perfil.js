@@ -7,29 +7,29 @@ import estilos from '../components/estilos';
 import ListaPets from '../components/ListaPets';
 import { data } from '../components/ListaPets';
 import { AuthContext } from '../contexts/Auth';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { deleteUser } from "firebase/auth";
 import { auth } from "../services/firebaseConfig";
 import { PetContext } from '../contexts/PetContext';
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../services/firebaseConfig';
 
 const Perfil = (children) => {
   const navigation = useNavigation();
   const {user, logout, register} = useContext(AuthContext);
-
-  const handleEditar = () => {
-    navigation.navigate('PerfilEditar');
+ 
+const handleEditar = () => {
+  navigation.navigate('PerfilEditar');
   };
   
-  const handleEditarPet = () => {
-    navigation.navigate('PerfilEditarPet');
+const handleEditarPet = () => {
+  navigation.navigate('PerfilEditarPet');
   };
   
-  const handleExluirConta = async() => {
-    const user = auth.currentUser;
+const handleExluirConta = async() => {
+  const user = auth.currentUser;
 
-    await deleteDoc(doc(db, "users", "userId"));
+    await deleteDoc(doc(db, "users", "user"));
 
     await deleteUser(user).then(() => {
       alert("Conta excluída!")
@@ -37,11 +37,10 @@ const Perfil = (children) => {
     })
    .catch((error) => {});
   };
-  
-  const handleCadastrarPet = () => {
-    navigation.navigate('PerfilCadastrarPet')
-  }
 
+ const handleCadastrarPet = () => {
+  navigation.navigate('PerfilCadastrarPet')
+}
   return (
     <LayoutBase>
       <View>

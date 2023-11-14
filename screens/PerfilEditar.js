@@ -88,7 +88,7 @@ const handleSalvar = () => {
         <Controller
           control={control}
           rules={{}}
-          render={( {field: value, onChange}) => (
+          render={( {field: {value, onChange}} ) => (
             <TextInput
               style={estilos.input}
               label="Senha"
