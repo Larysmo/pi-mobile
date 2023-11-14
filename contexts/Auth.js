@@ -21,7 +21,6 @@ const AuthProvider = ({ children }) => {
   };
 
   const register = (userId, email, senha, nome, telefone) => {
-    
     setUser({
       userId,
       email,
