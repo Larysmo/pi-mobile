@@ -27,9 +27,10 @@ const Login = () => {
       login(user.email, data.senha)
     })
     .catch((error) => {
+      console.log(error)
       const errorCode = error.code;
       const errorMessage = error.message;
-      if(errorCode === 'auth/invalid-login-credentials'){
+      if(errorCode === 'auth/user-login-credentials'){
           alert('Usuário não cadastrado!');
       } else {
           alert('Dados incorretos!');

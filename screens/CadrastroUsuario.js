@@ -20,7 +20,7 @@ const CadastroUsuario = () => {
     formState: { errors },
   } = useForm();
 
-  const { user, register} = useContext(AuthContext);
+  const { user, register, login} = useContext(AuthContext);
   const [exibeSenha, setExibeSenha] = useState(false);
   const navigation = useNavigation()
 
@@ -44,20 +44,27 @@ const CadastroUsuario = () => {
   
     
       register(userId, user.email, data.senha, data.nome, data.telefone);
-      navigation.pop()
-      } catch (error) {
+      login(user.email, data.senha)
+    } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert('Erro ao cadastrar usuário: ' + errorMessage);
-    }
-  };
+    
+      if (errorCode === 'auth/email-already-in-use') { 
+        alert('E-mail já cadastrado!');
+      } else {
+        alert('Erro ao cadastrar usuário: ' + errorMessage);
+      }
+    }}
   useEffect(() => {
     async function criarCadastro() {
     if (user) {
       const userId = user.uid;
       register(userId, user.email, null, null, null);
     }
+    
+
   }
+
     criarCadastro();
   }, []);
 
