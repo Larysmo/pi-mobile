@@ -1,17 +1,13 @@
-import { useContext } from 'react';
-import { View, Text,Alert, ScrollView } from 'react-native';
+import { View, Text } from 'react-native';
 import { TextInput,  } from 'react-native-paper';
 import LayoutBase from '../components/layoutBase';
 
 import estilos from '../components/estilos';
 import ListaAgenda from '../components/ListaAgenda'
 import ListaPets from '../components/ListaPets'
-import { PetContext } from '../contexts/PetContext';
 
 const Home = (props) => {
-
-  const {pets} = useContext(PetContext); //traz apenas produtos
-  
+ 
   return (
     
     <LayoutBase>
@@ -31,8 +27,7 @@ const Home = (props) => {
           <View style={estilos.linha}></View>
         </View>
         <View style={{flex:1, flexDirection: 'row'}}>
-        <ListaPets
-    />
+        <ListaPets/>
         </View>
     </LayoutBase>
   );

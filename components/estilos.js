@@ -37,7 +37,7 @@ const estilos = StyleSheet.create({
   },
   botaoTexto:{
     fontWeight:"bold",
-    fontSize: 18,
+    fontSize: 15,
     color: "orange",
     marginHorizontal:10,
   },
@@ -105,6 +105,23 @@ const estilos = StyleSheet.create({
     width: 50,
     height: 50,
   },
+  imagemPetLista: {
+    height: 50,
+    width: 50,
+    borderRadius: 5,
+    margin: 5,
+    alignItems: 'center'
+  },
+  containerPerfil:{
+    marginTop: 20,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
+  listaPetPerfil:{
+    flexDirection: 'row'
+  },
+
 });
 
 export default estilos

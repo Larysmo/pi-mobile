@@ -46,8 +46,7 @@ const CuidadorAgendamento = (props) => {
             </Text>
 
             <View>
-              <ListaPets
-              />
+              <ListaPets/>
               </View>
           </View>
         </View>
