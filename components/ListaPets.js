@@ -7,7 +7,7 @@ const ListaPets = () => {
   const {pets} = useContext(PetContext); //traz apenas produtos
 
   return (
-    <View>
+    <View style={{alignItems: 'center', justifyContent: 'space-between'}}>
     <FlatList
     data={pets} 
     horizontal={true}
@@ -27,9 +27,11 @@ const ListaPets = () => {
 
 const styles = StyleSheet.create({
   imagemPetLista: {
-    height: 50,
-    width: 50,
-    borderRadius: 10
+    height: 70,
+    width: 70,
+    borderRadius: 5,
+    margin: 5,
+    alignItems: 'center'
   },
 });
 

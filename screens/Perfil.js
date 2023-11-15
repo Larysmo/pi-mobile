@@ -1,11 +1,12 @@
-import { View, Text, TouchableOpacity, ScrollView, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Pressable, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { List, IconButton} from 'react-native-paper';
+
 
 import LayoutBase from '../components/layoutBase';
 import estilos from '../components/estilos';
 import ListaPets from '../components/ListaPets';
-import { data } from '../components/ListaPets';
 import { AuthContext } from '../contexts/Auth';
 import { useContext, useEffect } from 'react';
 import { deleteUser } from "firebase/auth";
@@ -14,12 +15,13 @@ import { PetContext } from '../contexts/PetContext';
 import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../services/firebaseConfig';
 
-const Perfil = (children) => {
+const Perfil = () => {
   const navigation = useNavigation();
   const {user, logout, register} = useContext(AuthContext);
- 
-const handleEditar = () => {
-  navigation.navigate('PerfilEditar');
+  const { pets } = useContext(PetContext);
+
+  const handleEditar = () => {
+    navigation.navigate('PerfilEditar');
   };
   
 const handleEditarPet = () => {
@@ -89,34 +91,39 @@ const handleExluirConta = async() => {
           <View
             style={{
               flexDirection: 'row',
-              marginTop: 20,
+              marginTop: 30,
               alignItems: 'center',
               justifyContent: 'space-between',
             }}>
             <Text style={estilos.titulo}> Seus Pets</Text>
             <View style={estilos.linha}></View>
           </View>
+          
           <View>
-            <ListaPets/>
-          </View>
-          <View>
-              
+          {pets.map((pet) => (  
+          <ScrollView>
+            <View>
+              <List.Item    
+              key={pet.id}
+              title={pet.nome}
+              left={() => (
+              <Image source={pet.imagem} style={estilos.imagemPetLista}/>
+              )}
+              right={(props) => (
+              <IconButton
+                {...props}
+                icon="pencil"
+                color="orange"
+                onPress={() =>navigation.navigate('PerfilEditarPet', { petId: pet.id })}
+              />
+            )}
+            />
             </View>
-          <View
-            style={{
-              marginTop: 50,
-              justifyContent: 'space-around',
-              alignItems: 'stretch',
-              flexDirection: 'row'
-
-            }}>
- 
-            <Pressable onPress={handleEditarPet}>
-              <View style={{ alignItems: 'center', padding:5 }}>
-                <Text style={estilos.botaoTextoCuidador}>Editar Pet</Text>
-                <Ionicons name="pencil" size={20} color="orange" />
-              </View>
-            </Pressable>
+          </ScrollView>
+          ))}
+          </View>
+          
+          <View style={estilos.containerPerfil}>
             <Pressable onPress={handleCadastrarPet}>
               <View style={{ alignItems: 'center' }}>
                 <Text style={estilos.botaoTextoCuidador}>Novo Pet</Text>
