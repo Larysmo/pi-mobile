@@ -1,118 +1,70 @@
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { TextInput, HelperText } from 'react-native-paper';
-import { useState } from 'react';
+import { View, Text, Pressable, ScrollView } from 'react-native';
+import { TextInput, HelperText, Button } from 'react-native-paper';
+import { useContext, useState } from 'react';
 import LayoutBase from '../components/layoutBase';
 import estilos from '../components/estilos';
 import { useForm, Controller } from 'react-hook-form';
+import { PetContext } from '../contexts/PetContext';
 
-const CadastroUsuario = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+const PerfilCadastrarPet = ({ navigation}) => {
 
-  const navigation = useNavigation();
+  const [nome, setNome] = useState();
+  const [especie, setEspecie] = useState();
+  const [raca, setRaca] = useState();
+  const [idade, setIdade] = useState();
+  const [sexo, setSexo] = useState();
+  const [castrado, setCastrado] = useState();
 
-  const onSubmit = (data) => {
-      alert('Pet cadastrado!');
-      navigation.navigate('Home');
-  }
-  
+  const { adicionarPet } = useContext(PetContext);
+
   return (
     <LayoutBase>
-      <Text style={estilos.titulo}>Novo Pet</Text>
-      <View style={estilos.containerInterno}>
-        <Controller
-          control={control}
-          rules={{
-            required: { value: true, message: 'Nome obrigatorio!' },
-          }}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              style={estilos.input}
-              label="Nome"
-              value={value}
-              onChangeText={onChange}
-              keyboardType="default"
-              autoCapitalize="words"
-            />
-          )}
-          name="nome"
+      <ScrollView style={{ flex: 1, padding: 16 }}>
+        <TextInput
+          label="Nome"
+          value={nome}
+          onChangeText={(text) => setNome(text)}
         />
-        <HelperText type="error" visible="true">
-          {errors.nome && errors.nome.message}
-        </HelperText>
+        <TextInput
+          label="Especie"
+          value={especie}
+          onChangeText={(text) => setEspecie(text)}
+        />
+        <TextInput
+          label="Raça"
+          value={raca}
+          onChangeText={(text) => setRaca(text)}
+        />
+        <TextInput
+          label="Idade"
+          value={idade}
+          onChangeText={(text) => setIdade(text)}
+        />
+        <TextInput
+          label="Sexo"
+          value={sexo}
+          onChangeText={(text) => setSexo(text)}
+        />
+        <TextInput
+          label="Castrado?"
+          value={castrado}
+          onChangeText={(text) => setCastrado(text)}
+        />
 
-        <Controller
-          control={control}
-          rules={{
-            required: { value: true, message: 'Raça obrigatoria!' },
-          }}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              style={estilos.input}
-              label="Raca"
-              value={value}
-              onChangeText={onChange}
-              keyboardType="default"
-              autoCapitalize="words"
-            />
-          )}
-          name="raca"
-        />
-        <HelperText type="error" visible="true">
-          {errors.raca && errors.raca.message}
-        </HelperText>
-
-        <Controller
-          control={control}
-          rules={{
-            required: { value: true, message: 'Idade obrigatoria!' },
-}}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              style={estilos.input}
-              label="Idade"
-              value={value}
-              onChangeText={onChange}
-              keyboardType="phone-pad"
-              maxLength={2}
-            />
-          )}
-          name="idade"
-        />
-        <HelperText type="error" visible="true">
-          {errors.idade && errors.idade.message}
-        </HelperText>
-
-        <Controller
-          control={control}
-          rules={{
-            required: { value: true, message: 'Peso obrigatoria!' },
-          }}
-          render={({ field: { value, onChange } }) => (
-            <TextInput
-              style={estilos.input}
-              label="Peso"
-              value={value}
-              onChangeText={onChange}
-              keyboardType="phone-pad"
-              maxLength={2}
-            />
-          )}
-          name="peso"
-        />
-        <HelperText type="error" visible="true">
-          {errors.peso && errors.peso.message}
-        </HelperText>
-        <TouchableOpacity style={estilos.botao} onPress={handleSubmit(onSubmit)}>
+        <Pressable style={estilos.botao} 
+           onPress={() => {adicionarPet(nome, especie),
+           alert('Pet Cadastrado'),
+           navigation.navigate("Perfil");}}>
           <Text style={estilos.botaoTexto}>Salvar</Text>
-        </TouchableOpacity>
-      </View>
+        </Pressable>
+      </ScrollView>
+      
+
+
+
     </LayoutBase>
   );
 };
 
-export default CadastroUsuario;
+export default PerfilCadastrarPet;

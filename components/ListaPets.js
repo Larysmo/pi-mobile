@@ -1,26 +1,28 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { PetContext } from '../contexts/PetContext';
-import { ScrollView, View, StyleSheet, Image, Text, Pressable, FlatList } from 'react-native';
+import { ScrollView, View, StyleSheet, Image, Text, FlatList } from 'react-native';
+import { IconButton, List } from 'react-native-paper';
+import estilos from './estilos';
 
 const ListaPets = () => {
   // const contexto = useContext(ProdutoContext); //traz produtos e setProdutos (todo o contexto)
-  const {pets} = useContext(PetContext); //traz apenas produtos
+  const { pets, listarPet, removerPet } = useContext(PetContext);
+
+  useEffect(() => {
+    listarPet()
+  }, [])
 
   return (
     <View style={{alignItems: 'center', justifyContent: 'space-between'}}>
-    <FlatList
-    data={pets} 
-    horizontal={true}
-    keyExtractor={(item) => item.id} //busca elementos a partir de um elemento-chave. Neste caso, é o id. Sem ele não tem diferenciação de objetos
-    renderItem={({item}) => ( //renderiza elementos da lista, conforme item passado no keyExtractor
-      <ScrollView horizontal  > 
-        <View>
-          <Image source={item.imagem} style={styles.imagemPetLista}/>
-          <Text> {item.nome} </Text>
-        </View>
-      </ScrollView> 
-    )}
-    />
+      <ScrollView horizontal>
+        {pets.map((pet) => (
+          <List.Item
+            key={pet.id}
+            title={pet.nome}
+            description={pet.especie}
+          />
+        ))}
+      </ScrollView>
     </View>
   );
 };
