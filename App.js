@@ -4,9 +4,6 @@ import AuthProvider from './contexts/Auth';
 import PetProvider from './contexts/PetContext';
 
 
-
-
-
 export default function App() {
   return (
     <NavigationContainer>
