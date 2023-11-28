@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {users} from '../contexts/Auth'
 
 const BASE_URL = "https://meupet-feliz-default-rtdb.firebaseio.com/" // url do projeto nos dados da seção RealTime database do Firebase
 

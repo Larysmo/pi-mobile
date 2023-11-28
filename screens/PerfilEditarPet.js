@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { Button, TextInput, HelperText } from 'react-native-paper';
+import { Button, TextInput } from 'react-native-paper';
 import { useForm, Controller } from 'react-hook-form';
 
 import LayoutBase from '../components/layoutBase';
@@ -23,7 +23,7 @@ const PerfilEditarPet = ({ route, navigation }) => {
   useEffect(() => {
     buscarPet(petId).then((pet) => {
       setNome(pet.nome);
-      setTelefone(pet.especie);
+      setEspecie(pet.especie);
       setRaca(pet.raca);
       setIdade(pet.Idade);
       setSexo(pet.sexo);
@@ -67,7 +67,7 @@ const PerfilEditarPet = ({ route, navigation }) => {
 
             <TextInput
               style={estilos.input}
-              label="Sexp"
+              label="Sexo"
               value={sexo}
               onChangeText={(text) => setSexo(text)}
             />
@@ -75,14 +75,14 @@ const PerfilEditarPet = ({ route, navigation }) => {
             <TextInput 
               style={estilos.input}
               label="Castrado?"
-              value={value}
+              value={castrado}
               onChangeText={(text) => setCastrado(text)}
             />
 
 
 
         <Button style={estilos.botao} mode="contained" onPress={() => {
-            atualizarPet(PetId, nome, especie, raca, castrado, idade, sexo);
+            atualizarPet(petId, nome, especie, raca, castrado, idade, sexo);
             navigation.navigate('Perfil');
           }}>
         <Text style={estilos.botaoTexto}>Salvar</Text>

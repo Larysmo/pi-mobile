@@ -49,7 +49,7 @@ const PetProvider = ({ children }) => {
 
   const removerPet = async (id) => {
     try {
-      await excluir(id);
+      await excluirPet(id);
       const index = pets.findIndex((pet) => pet.id === id);
       pets.splice(index, 1);
       setPets([...pets]);
