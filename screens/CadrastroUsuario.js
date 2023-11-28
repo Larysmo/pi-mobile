@@ -2,13 +2,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { TextInput, HelperText } from 'react-native-paper';
 import estilos from '../components/estilos';
-import { useContext, useState, useEffect,  } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/Auth';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../services/firebaseConfig";
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
-import { db } from '../services/firebaseConfig';
+
 
 
 
@@ -20,54 +16,14 @@ const CadastroUsuario = () => {
     formState: { errors },
   } = useForm();
 
-  const { user, register, login} = useContext(AuthContext);
+  const { register } = useContext(AuthContext);
   const [exibeSenha, setExibeSenha] = useState(false);
-  const navigation = useNavigation()
 
   
-  const onSubmit = async (data) => {
-    try {
-      // Firebase Autenticacao
-      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.senha);
-      
-      const user = userCredential.user;
-      const userId = user.uid;
-   
-      // Firestore
-      const db = getFirestore();
-      const userDocRef = doc(db, "users", userId);
-      await setDoc(userDocRef, {
-        name: data.nome,
-        telefone: data.telefone,
-        email: user.email
-      });
-  
-    
-      register(userId, user.email, data.senha, data.nome, data.telefone);
-      login(user.email, data.senha)
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    
-      if (errorCode === 'auth/email-already-in-use') { 
-        alert('E-mail já cadastrado!');
-      } else {
-        alert('Erro ao cadastrar usuário: ' + errorMessage);
-      }
-    }}
-  useEffect(() => {
-    async function criarCadastro() {
-    if (user) {
-      const userId = user.uid;
-      register(userId, user.email, null, null, null);
-    }
-    
-
+  const onSubmit = (data) => {
+    const {nome, telefone,email, senha} = data
+    register(email, senha, nome, telefone)
   }
-
-    criarCadastro();
-  }, []);
-
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 0.1 }}>
