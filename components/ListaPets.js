@@ -6,7 +6,7 @@ import estilos from './estilos';
 
 const ListaPets = () => {
   // const contexto = useContext(ProdutoContext); //traz produtos e setProdutos (todo o contexto)
-  const { pets, listarPet, removerPet } = useContext(PetContext);
+  const { pets, listarPet } = useContext(PetContext);
 
   useEffect(() => {
     listarPet()
@@ -19,23 +19,13 @@ const ListaPets = () => {
           <List.Item
             key={pet.id}
             title={pet.nome}
-            description={pet.especie}
+            description={pet.especie}    
           />
         ))}
       </ScrollView>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  imagemPetLista: {
-    height: 70,
-    width: 70,
-    borderRadius: 5,
-    margin: 5,
-    alignItems: 'center'
-  },
-});
 
   export default ListaPets
 

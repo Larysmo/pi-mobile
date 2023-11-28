@@ -106,20 +106,21 @@ const estilos = StyleSheet.create({
     height: 50,
   },
   imagemPetLista: {
-    height: 50,
-    width: 50,
+    height: 30,
+    width: 30,
     borderRadius: 5,
     margin: 5,
     alignItems: 'center'
   },
   containerPerfil:{
-    marginTop: 20,
-    justifyContent: 'space-between',
+    marginTop: 10,
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'column'
   },
   listaPetPerfil:{
-    flexDirection: 'row'
+    flexDirection: 'row',
+
   },
 
 });
