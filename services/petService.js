@@ -54,7 +54,7 @@ const alterarPet = async (id, nome, especie, raca, castrado, idade, sexo) => {
 //DELETE excluir um pet
 const excluirPet = async (id) => {
   try {
-    await axios.delete(`${BASE_URL}/contatos/data/${id}.json`);
+    await axios.delete(`${BASE_URL}/pets/data/${id}.json`);
   } catch (error) {
     console.log(error);
   }

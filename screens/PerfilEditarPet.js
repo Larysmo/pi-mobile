@@ -18,6 +18,12 @@ const PerfilEditarPet = ({ route, navigation }) => {
   const [sexo, setSexo] = useState();
   const [castrado, setCastrado] = useState();
 
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
  
   // traz os dados salvos no input de edição
   useEffect(() => {
@@ -25,7 +31,7 @@ const PerfilEditarPet = ({ route, navigation }) => {
       setNome(pet.nome);
       setEspecie(pet.especie);
       setRaca(pet.raca);
-      setIdade(pet.Idade);
+      setIdade(pet.idade);
       setSexo(pet.sexo);
       setCastrado(pet.castrado);
     });
