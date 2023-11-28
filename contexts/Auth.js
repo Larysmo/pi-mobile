@@ -3,10 +3,13 @@ import { signIn, signUp } from '../services/AuthService';
 
 const AuthContext = createContext();
 
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({
     logado: false,
   });
+
+  const [error, setError] = useState([]);
 
   const login = async (email, senha) => {
     try {
