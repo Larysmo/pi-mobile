@@ -6,8 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useState, useContext } from 'react';
 import estilos from '../components/estilos';
 import { AuthContext } from '../contexts/Auth';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../services/firebaseConfig";
+
 
 const Login = () => {
   const navigation = useNavigation()
@@ -21,22 +20,7 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    signInWithEmailAndPassword(auth, data.email, data.senha)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      login(user.email, data.senha)
-    })
-    .catch((error) => {
-      console.log(error)
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      if(errorCode === 'auth/user-login-credentials'){
-          alert('Usuário não cadastrado!');
-      } else {
-          alert('Dados incorretos!');
-      } 
-      }
-    );
+    login(data.email, data.senha)
   } 
 
   const handleCadastrarUsuario = () => {
@@ -57,8 +41,8 @@ const Login = () => {
             <Controller
               control={control}
               rules={{
-                required: { value: true, message: 'E-mail obrigatório!' },
-                pattern: {value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i, message:'Email com formato inválido!'},
+                required: { value: true, message: 'E-mail obrigatÃ³rio!' },
+                pattern: {value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i, message:'Email com formato invÃ¡lido!'},
               }}
               render={({ field: { value, onChange } }) => (
                 <TextInput
@@ -79,7 +63,7 @@ const Login = () => {
               <Controller
                 control={control}
                 rules={{
-                  required: { value: true, message: 'Senha obrigatória!' },
+                  required: { value: true, message: 'Senha obrigatÃ³ria!' },
                 }}
                 render={({ field: { value, onChange } }) => (
                   <TextInput

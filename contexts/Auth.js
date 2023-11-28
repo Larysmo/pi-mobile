@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import { signIn, signUp } from '../services/AuthService';
 
 const AuthContext = createContext();
 
@@ -7,11 +8,14 @@ const AuthProvider = ({ children }) => {
     logado: false,
   });
 
-  const login = (email, senha) => {
-    setUser({
-      email,
-      logado: true,
-    });
+  const login = async (email, senha) => {
+    try {
+      await signIn(email, senha);
+      setUser({ email, logado: true });
+      setError(null);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   const logout = () => {
@@ -20,24 +24,23 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  const register = (userId, email, senha, nome, telefone) => {
-    setUser({
-      userId,
-      email,
-      senha,
-      nome,
-      telefone,
-    });
+  const register = async (email, senha, nome, telefone) => {
+    try {
+      await signUp(nome, email, senha, telefone); // Incluindo o telefone
+      setUser({ email, nome, telefone, logado: true });
+      setError(null);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   const contexto = {
     user,
     login,
     logout,
-    register
+    register,
   };
-
-    return (
+  return (
     <AuthContext.Provider value={contexto}>{children}</AuthContext.Provider>
   );
 };

@@ -11,10 +11,6 @@ const Home = (props) => {
   return (
     
     <LayoutBase>
-        <View>
-          <Text style={estilos.titulo}> Buscar Pet Sitter</Text>
-          <TextInput style={estilos.input} label="Escolha sua cidade" />
-        </View>
         <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
           <Text style={estilos.titulo}> Agendamentos Confirmados</Text>
           <View style={estilos.linha2}></View>
