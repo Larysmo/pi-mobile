@@ -129,17 +129,19 @@ const handleExluirConta = async() => {
             />
             ))}
             </View>
-          </ScrollView>
-          </View>
-          
-          <View style={estilos.containerPerfil}>
+            <View style={estilos.containerPerfil}>
             <Pressable onPress={handleCadastrarPet}>
               <View style={{ alignItems: 'center' }}>
                 <Text style={estilos.botaoTextoCuidador}></Text>
-                <Ionicons name="add-circle" size={50} color="orange" />
+                <Ionicons name="add-circle" size={50} color="orange"/>
               </View>
             </Pressable>
           </View>
+          </ScrollView>
+          
+          </View>
+          
+
         </View>
       </View>
     </LayoutBase>
