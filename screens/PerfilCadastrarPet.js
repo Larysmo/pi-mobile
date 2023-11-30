@@ -24,22 +24,11 @@ const PerfilCadastrarPet = ({ navigation}) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    adicionarPet(nome, especie),
-    alert('Pet Cadastrado'),
-    navigation.navigate("Perfil")
-}
 
   return (
     <LayoutBase>
       <Text style={estilos.titulo}>Novo Pet</Text>
       <ScrollView style={{ flex: 1, padding: 16 }}>
-      <Controller
-          control={control}
-          rules={{
-            required: { value: true, message: 'Nome obrigatorio!' },
-          }}
-          render={({ field: { value, onChange } }) => (
         <TextInput
           label="Nome"
           value={nome}
@@ -47,19 +36,7 @@ const PerfilCadastrarPet = ({ navigation}) => {
           keyboardType="default"
           autoCapitalize="words"
           />
-          )}
-          name="nome"
-        />
-        <HelperText type="error" visible="true">
-          {errors.nome && errors.nome.message}
-        </HelperText>
 
-        <Controller
-          control={control}
-          rules={{
-            required: { value: true, message: 'Especie obrigatoria!' },
-          }}
-          render={({ field: { value, onChange } }) => (
         <TextInput
           label="Especie"
           value={especie}
@@ -67,19 +44,7 @@ const PerfilCadastrarPet = ({ navigation}) => {
           keyboardType="default"
           autoCapitalize="words"
           />
-          )}
-          name="especie"
-        />
-        <HelperText type="error" visible="true">
-          {errors.especie && errors.especie.message}
-        </HelperText>
 
-        <Controller
-          control={control}
-          rules={{
-            required: { value: true, message: 'Raça obrigatoria!' },
-          }}
-          render={({ field: { value, onChange } }) => (
         <TextInput
           label="Raça"
           value={raca}
@@ -87,19 +52,7 @@ const PerfilCadastrarPet = ({ navigation}) => {
           keyboardType="default"
           autoCapitalize="words"
           />
-          )}
-          name="raca"
-        />
-        <HelperText type="error" visible="true">
-          {errors.raca && errors.raca.message}
-        </HelperText>
 
-        <Controller
-          control={control}
-          rules={{
-            required: { value: true, message: 'Idade obrigatoria!' },
-          }}
-          render={({ field: { value, onChange } }) => (        
         <TextInput
           label="Idade"
           value={idade}
@@ -107,19 +60,7 @@ const PerfilCadastrarPet = ({ navigation}) => {
           keyboardType="default"
           autoCapitalize="words"
           />
-          )}
-          name="idade"
-        />
-        <HelperText type="error" visible="true">
-          {errors.idade && errors.idade.message}
-        </HelperText>
-
-        <Controller
-          control={control}
-          rules={{
-            required: { value: true, message: 'Favor informar o sexo!' },
-          }}
-          render={({ field: { value, onChange } }) => (     
+  
         <TextInput
           label="Sexo"
           value={sexo}
@@ -127,19 +68,7 @@ const PerfilCadastrarPet = ({ navigation}) => {
           keyboardType="default"
           autoCapitalize="words"
           />
-          )}
-          name="sexo"
-        />
-        <HelperText type="error" visible="true">
-          {errors.sexo && errors.sexo.message}
-        </HelperText>
 
-        <Controller
-          control={control}
-          rules={{
-            required: { value: true, message: 'Favor informar se o pet é castrado!' },
-          }}
-          render={({ field: { value, onChange } }) => (   
         <TextInput
           label="Castrado?"
           value={castrado}
@@ -147,22 +76,17 @@ const PerfilCadastrarPet = ({ navigation}) => {
           keyboardType="default"
           autoCapitalize="words"
           />
-          )}
-          name="castrado"
-        />
-        <HelperText type="error" visible="true">
-          {errors.castrado && errors.castrado.message}
-        </HelperText>
 
         <Pressable style={estilos.botao} 
-           onPress={handleSubmit(onSubmit)}>
+           onPress={() => {
+            adicionarPet(nome, especie, raca, idade, sexo, castrado);
+            navigation.navigate('Perfil');
+            alert('Pet Cadastrado')
+          }}>
           <Text style={estilos.botaoTexto}>Salvar</Text>
         </Pressable>
       </ScrollView>
-      
-
-
-
+    
     </LayoutBase>
   );
 };
