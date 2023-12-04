@@ -1,10 +1,16 @@
+import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { TextInput, HelperText } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import estilos from '../components/estilos';
-import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../services/firebaseConfig";
+
+
+
+
+const API_KEY = "AIzaSyBB7bdl_mv15Tc4tU4CwGDLuHHeRYnGZyU";
+const BASE_URL = "https://identitytoolkit.googleapis.com/v1/accounts";
+
 
 const RecuperarSenha = () => {
    const {
@@ -15,18 +21,20 @@ const RecuperarSenha = () => {
 
    const navigation = useNavigation();
   
-  const onSubmit = (data) => {
-    sendPasswordResetEmail(auth, data.email)
-    .then(() => {
-      alert('Nova senha enviada para o email cadastrado!');
-      navigation.pop()
-    })
-    .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    
-  }) 
-  };
+ const onSubmit = async (data) => {
+  try {
+    console.log('Enviando solicitação:', data);
+    const response = await axios.post(`${BASE_URL}:sendOobCode?key=${API_KEY}`, {
+      email: data.email,
+      requestType: "PASSWORD_RESET",
+    });
+    alert('Email de redefinição de senha enviado!');
+    navigation.pop();
+  } catch (error) {
+    console.error('Erro na solicitação:', error);
+  }
+};
+
 
   return (
    <View style={{ flex: 1 }}>

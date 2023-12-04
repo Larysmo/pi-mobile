@@ -11,7 +11,7 @@ const Home = (props) => {
   return (
     
     <LayoutBase>
-        <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+        <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
           <Text style={estilos.titulo}> Agendamentos Confirmados</Text>
           <View style={estilos.linha2}></View>
         </View>

@@ -1,7 +1,7 @@
 import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-import { AuthContext } from '../contexts/Auth';
+import { AuthContext } from '../contexts/AuthContext';
 import { useContext } from 'react';
 
 

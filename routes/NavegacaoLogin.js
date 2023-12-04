@@ -4,7 +4,7 @@ import CadastroUsuario from '../screens/CadrastroUsuario';
 import Login from '../screens/Login';
 import MenuNavigator from './MenuNavigator';
 import { useContext } from 'react';
-import { AuthContext } from '../contexts/Auth';
+import { AuthContext } from '../contexts/AuthContext';
 
 const Stack = createNativeStackNavigator();
 
