@@ -7,20 +7,42 @@ import { List, IconButton, FAB} from 'react-native-paper';
 import LayoutBase from '../components/layoutBase';
 import estilos from '../components/estilos';
 import ListaPets from '../components/ListaPets';
-import { AuthContext } from '../contexts/Auth';
-import { useContext, useEffect } from 'react';
-import { deleteUser } from "firebase/auth";
-import { auth } from "../services/firebaseConfig";
+import { AuthContext } from '../contexts/AuthContext';
+import { useContext, useEffect, useState } from 'react';
 import { PetContext } from '../contexts/PetContext';
-import { doc, getDoc, deleteDoc } from "firebase/firestore";
-import { db } from '../services/firebaseConfig';
+
 
 const Perfil = () => {
   const navigation = useNavigation();
   const {user, logout, register} = useContext(AuthContext);
   const { pets, removerPet } = useContext(PetContext);
+  const [loading, setLoading] = useState(true)
 
-  const handleEditar = () => {
+  useEffect(() => {
+    const carregarDadosUsuario = async () => {
+      try {
+        setLoading(false); // Marca que os dados foram carregados
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    carregarDadosUsuario();
+  }, []);
+
+  if (loading) {
+    // Mostra um indicador de carregamento enquanto os dados estão sendo buscados
+    return (
+      <LayoutBase>
+        <View>
+          <Text>Carregando...</Text>
+        </View>
+      </LayoutBase>
+    );
+  }
+    
+  
+const handleEditar = () => {
     navigation.navigate('PerfilEditar');
   };
   
@@ -29,18 +51,10 @@ const handleEditarPet = () => {
   };
   
 const handleExluirConta = async() => {
-  const user = auth.currentUser;
-
-    await deleteDoc(doc(db, "users", "user"));
-
-    await deleteUser(user).then(() => {
-      alert("Conta excluída!")
-      logout()
-    })
-   .catch((error) => {});
+  
   };
 
- const handleCadastrarPet = () => {
+const handleCadastrarPet = () => {
   navigation.navigate('PerfilCadastrarPet')
 }
   return (
@@ -64,7 +78,7 @@ const handleExluirConta = async() => {
               padding: 20,
             }}>
             <View>
-              <Text style={estilos.perfilTexto}>Nome: {user.nome}</Text>
+              <Text style={estilos.perfilTexto}>Nome: {user.displayName}</Text>
               <Text style={estilos.perfilTexto}>E-mail: {user.email}</Text>
               <Text style={estilos.perfilTexto}>Telefone: {user.telefone}</Text>        
               <Text style={estilos.perfilTexto}>Id: {user.userId}</Text>        

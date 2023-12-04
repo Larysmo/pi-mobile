@@ -1,6 +1,5 @@
 import { createContext, useState } from 'react';
-import { signIn, signUp } from '../services/AuthService';
-
+import { signIn, signUp, getUser } from '../services/AuthService';
 const AuthContext = createContext();
 
 
@@ -14,8 +13,11 @@ const AuthProvider = ({ children }) => {
   const login = async (email, senha) => {
     try {
       await signIn(email, senha);
-      setUser({ email, logado: true });
+      const dadosAtuais = await getUser();
+      setUser({ ...dadosAtuais, logado: true });
       setError(null);
+      console.log('Dados do usuário no context:', dadosAtuais);
+
     } catch (error) {
       setError(error.message);
     }
@@ -29,11 +31,14 @@ const AuthProvider = ({ children }) => {
 
   const register = async (email, senha, nome, telefone) => {
     try {
-      await signUp(nome, email, senha, telefone); // Incluindo o telefone
-      setUser({ email, nome, telefone, logado: true });
+      await signUp(nome, email, senha, telefone);
+      const dadosAtuais = await getUser()
+      console.log('Dados após o registro no context:', dadosAtuais);
+      setUser({ ...dadosAtuais, logado: true });
       setError(null);
     } catch (error) {
       setError(error.message);
+      console.log('Não recebeu Dados do usuário após o registro');
     }
   };
 

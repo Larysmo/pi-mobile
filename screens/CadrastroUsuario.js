@@ -3,7 +3,7 @@ import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { TextInput, HelperText } from 'react-native-paper';
 import estilos from '../components/estilos';
 import { useContext, useState } from 'react';
-import { AuthContext } from '../contexts/Auth';
+import { AuthContext } from '../contexts/AuthContext';
 
 
 

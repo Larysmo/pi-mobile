@@ -6,7 +6,7 @@ import { useForm, Controller} from 'react-hook-form';
 
 import LayoutBase from '../components/layoutBase';
 import estilos from '../components/estilos';
-import { AuthContext } from '../contexts/Auth';
+import { AuthContext } from '../contexts/AuthContext';
 
 
 const PerfilEditar = ({route, navigation}) => {

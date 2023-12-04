@@ -5,7 +5,7 @@ import Logomarca from '../assets/logo.png';
 import { useNavigation } from '@react-navigation/native';
 import { useState, useContext } from 'react';
 import estilos from '../components/estilos';
-import { AuthContext } from '../contexts/Auth';
+import { AuthContext } from '../contexts/AuthContext';
 
 
 const Login = () => {
@@ -41,8 +41,8 @@ const Login = () => {
             <Controller
               control={control}
               rules={{
-                required: { value: true, message: 'E-mail obrigatÃ³rio!' },
-                pattern: {value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i, message:'Email com formato invÃ¡lido!'},
+                required: { value: true, message: 'E-mail obrigatório!' },
+                pattern: {value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i, message:'Email com formato inválido!'},
               }}
               render={({ field: { value, onChange } }) => (
                 <TextInput
@@ -63,7 +63,7 @@ const Login = () => {
               <Controller
                 control={control}
                 rules={{
-                  required: { value: true, message: 'Senha obrigatÃ³ria!' },
+                  required: { value: true, message: 'Senha obrigatória!' },
                 }}
                 render={({ field: { value, onChange } }) => (
                   <TextInput

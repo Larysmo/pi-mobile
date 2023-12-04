@@ -2,6 +2,9 @@ import axios from 'axios';
 
 const API_KEY = "AIzaSyBB7bdl_mv15Tc4tU4CwGDLuHHeRYnGZyU";
 const BASE_URL = "https://identitytoolkit.googleapis.com/v1/accounts";
+const DATABASE_URL = "https://meupet-feliz-default-rtdb.firebaseio.com/users";
+
+let UserId; // usuário autenticado
 
 const signIn = async (email, password) => {
   try {
@@ -10,6 +13,8 @@ const signIn = async (email, password) => {
       password,
       returnSecureToken: true,
     });
+
+    UserId = response.data.localId;
   } catch (error) {
     if (error.response.data.error.message === 'INVALID_LOGIN_CREDENTIALS') {
       throw Error('Usuario/Senha invalidos!');
@@ -25,10 +30,10 @@ const signUp = async (displayName, email, password, telefone) => {
       returnSecureToken: true,
     });
 
-    const userId = response.data.localId;
+    UserId = response.data.localId;
 
-    await axios.post(`https://meupet-feliz-default-rtdb.firebaseio.com/users/${userId}/dados.json`, {
-      userId,
+    await axios.post(`${DATABASE_URL}/${UserId}/dados.json`, {
+      userId: UserId,
       displayName,
       email,
       telefone,
@@ -44,4 +49,20 @@ const signUp = async (displayName, email, password, telefone) => {
   }
 };
 
-export { signIn, signUp };
+const getUser = async () => {
+  try {
+    const response = await axios.get(`${DATABASE_URL}/users/${UserId}.json`);
+    for (const key in response.data) {
+      user.push({ id: key, ...response.data[key] });
+    }
+
+    const userData = { id: UserId };
+    console.log('dados AuthService:', userData);
+    return userData;
+  } catch (error) {
+    console.error('Erro ao obter dados do usuário:', error);
+    throw error;
+  }
+}
+
+export { signIn, signUp, getUser };
