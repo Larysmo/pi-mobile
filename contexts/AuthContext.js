@@ -6,6 +6,10 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({
     logado: false,
+    nome: '',
+    email: '',
+    telefone: '',
+    userId: '',
   });
 
   const [error, setError] = useState([]);
@@ -42,14 +46,14 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const contexto = {
-    user,
-    login,
-    logout,
-    register,
-  };
   return (
-    <AuthContext.Provider value={contexto}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{
+      user,
+      register,
+      login, 
+      logout,    
+    }}>
+      {children}</AuthContext.Provider>
   );
 };
 

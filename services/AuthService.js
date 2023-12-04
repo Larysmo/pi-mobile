@@ -22,7 +22,7 @@ const signIn = async (email, password) => {
   }
 };
 
-const signUp = async (displayName, email, password, telefone) => {
+const signUp = async (nome, email, password, telefone) => {
   try {
     const response = await axios.post(`${BASE_URL}:signUp?key=${API_KEY}`, {
       email,
@@ -32,9 +32,9 @@ const signUp = async (displayName, email, password, telefone) => {
 
     UserId = response.data.localId;
 
-    await axios.post(`${DATABASE_URL}/${UserId}/dados.json`, {
+    await axios.put(`${DATABASE_URL}/${UserId}/dados.json`, {
       userId: UserId,
-      displayName,
+      nome,
       email,
       telefone,
     });
@@ -51,18 +51,21 @@ const signUp = async (displayName, email, password, telefone) => {
 
 const getUser = async () => {
   try {
-    const response = await axios.get(`${DATABASE_URL}/users/${UserId}.json`);
-    for (const key in response.data) {
-      user.push({ id: key, ...response.data[key] });
-    }
+    const response = await axios.get(`${DATABASE_URL}/${UserId}/dados.json`);
 
-    const userData = { id: UserId };
-    console.log('dados AuthService:', userData);
-    return userData;
+    if (response.data) {
+      const { nome, email, telefone, userId } = response.data;
+      const userData = { id: userId, nome, email, telefone };
+      console.log('Dados AuthService:', userData);
+      return userData;
+    } else {
+      console.log('Dados do usuário não encontrados.');
+      return null;
+    }
   } catch (error) {
     console.error('Erro ao obter dados do usuário:', error);
     throw error;
   }
-}
+};
 
 export { signIn, signUp, getUser };
